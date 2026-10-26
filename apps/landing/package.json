@@ -16,14 +16,14 @@
     "@marsidev/react-turnstile": "^1.5.5",
     "@paddle/paddle-js": "^1.6.4",
     "@tanstack/react-router": "^1.170.18",
-    "@tanstack/react-start": "1.168.31",
-    "@vitejs/plugin-react": "^4.6.0",
+    "@tanstack/react-start": "1.169.4",
+    "@vitejs/plugin-react": "6.1.2",
     "better-auth": "^1.6.23",
     "nitro": "3.0.260610-beta",
     "posthog-js": "^1.414.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "vite": "^7.0.4"
+    "vite": "8.3.5"
   },
   "devDependencies": {
     "@types/react": "^19.1.8",
