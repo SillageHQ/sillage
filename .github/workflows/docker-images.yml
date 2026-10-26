@@ -112,9 +112,9 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ env.REGISTRY }}/${{ github.repository }}-${{ matrix.name }}
+          images: ${{ env.REGISTRY }}/sillagehq/sillage-${{ matrix.name }}
           tags: |
-            type=raw,value=main
+            type=ref,event=branch
             type=sha,prefix=sha-,format=short
 
       - name: Build and push image
@@ -143,7 +143,8 @@ jobs:
     if: |
       always() &&
       github.ref == 'refs/heads/main' &&
-      (github.event_name == 'push' || inputs.deploy == true) &&
+      github.event_name == 'workflow_dispatch' &&
+      inputs.deploy == true &&
       vars.DEPLOYMENTS_ENABLED == 'true' &&
       needs.publish.result == 'success'
     runs-on: ubuntu-22.04
