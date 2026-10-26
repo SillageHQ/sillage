@@ -1,10 +1,12 @@
 # Coolify deployment
 
-The Docker workflow publishes these images to GHCR on every push to `main`:
+The Docker workflow publishes changed images to GHCR. On `main`, images receive
+the `main` and commit SHA tags; manually dispatched builds on another branch use
+that branch name and its commit SHA:
 
-- `ghcr.io/jb-holdings/silage-hq-api:main`
-- `ghcr.io/jb-holdings/silage-hq-memory:main`
-- `ghcr.io/jb-holdings/silage-hq-landing:main`
+- `ghcr.io/sillagehq/sillage-api:main`
+- `ghcr.io/sillagehq/sillage-memory:main`
+- `ghcr.io/sillagehq/sillage-landing:main`
 
 It only builds a service when files relevant to that service changed. The existing desktop release workflow remains separate and runs from `v*` tags or manually.
 
@@ -21,13 +23,14 @@ It only builds a service when files relevant to that service changed. The existi
 
 ## Automatic deployment through Tailscale
 
-Set the repository Actions variable `DEPLOYMENTS_ENABLED=true` after configuring
-the image names and resources. Manual builds publish images without deploying by
-default; select the workflow dispatch `deploy` option to redeploy after a manual build.
+Pushes to `main` publish images only. To redeploy, manually dispatch this workflow
+from `main`, select the service, and enable the `deploy` option. Set the repository
+Actions variable `DEPLOYMENTS_ENABLED=true` only after configuring image names and
+resources.
 
 GitHub Actions joins the private Tailscale network, then calls Coolify's authenticated deploy endpoint. The workflow does not expose the Coolify endpoint publicly.
 
-Configure these GitHub secrets and variables. The Tailscale secrets can be organization secrets, provided the `jb-holdings/silage-hq` repository is allowed by the organization secret policy:
+Configure these GitHub secrets and variables. The Tailscale secrets can be organization secrets, provided the `SillageHQ/sillage` repository is allowed by the organization secret policy:
 
 - Secret `TS_OAUTH_CLIENT_ID` (organization secret)
 - Secret `TS_OAUTH_SECRET` (organization secret)

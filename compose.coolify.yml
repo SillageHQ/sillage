@@ -1,6 +1,6 @@
 services:
   api:
-    image: ghcr.io/jb-holdings/silage-hq-api:${IMAGE_TAG:-main}
+    image: ghcr.io/sillagehq/sillage-api:${IMAGE_TAG:-main}
     restart: unless-stopped
     environment:
       NODE_ENV: production
@@ -52,7 +52,7 @@ services:
       retries: 10
 
   memory:
-    image: ghcr.io/jb-holdings/silage-hq-memory:${IMAGE_TAG:-main}
+    image: ghcr.io/sillagehq/sillage-memory:${IMAGE_TAG:-main}
     restart: unless-stopped
     environment:
       FALKORDB_HOST: falkordb
@@ -78,7 +78,7 @@ services:
       retries: 10
 
   landing:
-    image: ghcr.io/jb-holdings/silage-hq-landing:${IMAGE_TAG:-main}
+    image: ghcr.io/sillagehq/sillage-landing:${IMAGE_TAG:-main}
     restart: unless-stopped
     environment:
       NODE_ENV: production

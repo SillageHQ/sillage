@@ -311,7 +311,12 @@ export default function App({ releaseCatalog }: { releaseCatalog: ReleaseCatalog
     <>
       <header className="topbar landing-topbar">
         <a href="#top" aria-label="Sillage home"><Wordmark /></a>
-        <a className="top-link" href="#access">Join the private beta <Arrow /></a>
+        <nav className="landing-topbar-nav" aria-label="Main navigation">
+          <a className="landing-github-link" href="https://github.com/SillageHQ/sillage" target="_blank" rel="noreferrer">
+            GitHub <span aria-hidden="true">↗</span>
+          </a>
+          <a className="top-link" href="#access">Join the private beta <Arrow /></a>
+        </nav>
       </header>
 
       <main>
@@ -327,6 +332,16 @@ export default function App({ releaseCatalog }: { releaseCatalog: ReleaseCatalog
             <p className="hero-lede">
               Sillage is an AI workspace with a verifiable memory built from your Obsidian notes. As you talk, it brings the right context into the conversation and shows where it came from.
             </p>
+            <div className="hero-availability" aria-label="Sillage hosting options">
+              <a className="hero-availability-item hero-availability-source" href="https://github.com/SillageHQ/sillage" target="_blank" rel="noreferrer">
+                <span className="hero-availability-label">PUBLIC SOURCE · ELV2</span>
+                <strong>Self-host for free <span aria-hidden="true">↗</span></strong>
+              </a>
+              <div className="hero-availability-item hero-availability-cloud">
+                <span className="hero-availability-label">HOSTED VERSION</span>
+                <strong>Sillage Cloud <span>Coming soon</span></strong>
+              </div>
+            </div>
             <div className="hero-downloads" aria-label="Download the latest Sillage beta">
               <PlatformDownload artifact={macArtifact} platform="macOS" icon={<AppleIcon />} />
               <PlatformDownload artifact={linuxArtifact} artifacts={linuxArtifacts} platform="Linux" icon={<LinuxIcon />} />
