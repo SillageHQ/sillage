@@ -1,0 +1,40 @@
+{
+  "name": "@sb/api",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "predev": "pnpm db:push",
+    "dev": "tsx watch src/index.ts",
+    "prestart": "prisma generate",
+    "start": "tsx src/index.ts",
+    "db:push": "prisma db execute --schema prisma/schema.prisma --file prisma/enable-pgvector.sql && prisma db execute --schema prisma/schema.prisma --file prisma/prepare-multitenancy.sql && prisma db push --accept-data-loss && prisma db execute --schema prisma/schema.prisma --file prisma/setup-rag-indexes.sql && prisma db execute --schema prisma/schema.prisma --file prisma/setup-multitenancy.sql",
+    "db:migrate:deploy": "prisma db execute --schema prisma/schema.prisma --file prisma/enable-pgvector.sql && prisma db execute --schema prisma/schema.prisma --file prisma/prepare-multitenancy.sql && tsx scripts/deploy-migrations.ts && prisma db execute --schema prisma/schema.prisma --file prisma/setup-rag-indexes.sql && prisma db execute --schema prisma/schema.prisma --file prisma/setup-multitenancy.sql",
+    "db:studio": "prisma studio",
+    "beta:codes:create": "tsx scripts/create-beta-codes.ts",
+    "generate": "prisma generate",
+    "test": "tsx --test src/*.test.ts",
+    "test:integration": "node --env-file=.env --import tsx --test src/*.integration.test.ts"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.1090.0",
+    "@better-auth/passkey": "^1.6.23",
+    "@better-auth/prisma-adapter": "^1.6.23",
+    "@hono/node-server": "^1.13.7",
+    "@prisma/client": "^6.1.0",
+    "better-auth": "^1.6.23",
+    "hono": "^4.6.14",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "react-email": "^6.9.1",
+    "undici": "^8.8.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "prisma": "^6.1.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.8.3"
+  }
+}

@@ -1,0 +1,202 @@
+name: Build and publish Docker images
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      service:
+        description: Build one service or all services
+        required: true
+        default: all
+        type: choice
+        options: [all, api, memory, landing]
+      deploy:
+        description: Redeploy Coolify after publishing images
+        type: boolean
+        required: true
+        default: false
+
+env:
+  REGISTRY: ghcr.io
+
+jobs:
+  changes:
+    name: Detect changed services
+    runs-on: ubuntu-22.04
+    outputs:
+      matrix: ${{ steps.matrix.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Detect changed paths
+        if: github.event_name == 'push'
+        uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            api:
+              - 'Dockerfile.api'
+              - '.github/workflows/docker-images.yml'
+              - 'compose.coolify.yml'
+              - 'package.json'
+              - 'pnpm-lock.yaml'
+              - 'pnpm-workspace.yaml'
+              - 'services/api/**'
+            memory:
+              - 'Dockerfile.memory'
+              - '.github/workflows/docker-images.yml'
+              - 'compose.coolify.yml'
+              - 'services/memory/**'
+            landing:
+              - 'Dockerfile.landing'
+              - '.github/workflows/docker-images.yml'
+              - 'compose.coolify.yml'
+              - 'package.json'
+              - 'pnpm-lock.yaml'
+              - 'pnpm-workspace.yaml'
+              - 'apps/landing/**'
+
+      - name: Build service matrix
+        id: matrix
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          REQUESTED_SERVICE: ${{ inputs.service }}
+          API_CHANGED: ${{ steps.filter.outputs.api }}
+          MEMORY_CHANGED: ${{ steps.filter.outputs.memory }}
+          LANDING_CHANGED: ${{ steps.filter.outputs.landing }}
+        run: |
+          node <<'NODE' >> "$GITHUB_OUTPUT"
+          const all = [
+            { name: "api", dockerfile: "Dockerfile.api" },
+            { name: "memory", dockerfile: "Dockerfile.memory" },
+            { name: "landing", dockerfile: "Dockerfile.landing" },
+          ];
+
+          const selected = process.env.EVENT_NAME === "workflow_dispatch"
+            ? (process.env.REQUESTED_SERVICE === "all"
+              ? all
+              : all.filter(({ name }) => name === process.env.REQUESTED_SERVICE))
+            : all.filter(({ name }) => process.env[`${name.toUpperCase()}_CHANGED`] === "true");
+
+          console.log(`matrix=${JSON.stringify({ include: selected })}`);
+          NODE
+
+  publish:
+    name: Publish ${{ matrix.name }} image
+    needs: changes
+    if: needs.changes.outputs.matrix != '{"include":[]}'
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: read
+      packages: write
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.changes.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Docker metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ github.repository }}-${{ matrix.name }}
+          tags: |
+            type=raw,value=main
+            type=sha,prefix=sha-,format=short
+
+      - name: Build and push image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ${{ matrix.dockerfile }}
+          platforms: linux/amd64
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            VITE_API_URL=${{ vars.VITE_API_URL }}
+            VITE_SITE_URL=${{ vars.VITE_SITE_URL }}
+            VITE_GOOGLE_CLIENT_ID=${{ vars.VITE_GOOGLE_CLIENT_ID }}
+            VITE_GOOGLE_ANALYTICS_ID=${{ secrets.VITE_GOOGLE_ANALYTICS_ID }}
+            VITE_POSTHOG_KEY=${{ secrets.VITE_POSTHOG_KEY }}
+            VITE_POSTHOG_HOST=${{ secrets.VITE_POSTHOG_HOST }}
+            VITE_TURNSTILE_SITE_KEY=${{ vars.VITE_TURNSTILE_SITE_KEY }}
+          cache-from: type=gha,scope=${{ matrix.name }}
+          cache-to: type=gha,mode=max,scope=${{ matrix.name }}
+
+  deploy:
+    name: Redeploy Coolify resources
+    needs: [changes, publish]
+    if: |
+      always() &&
+      github.ref == 'refs/heads/main' &&
+      (github.event_name == 'push' || inputs.deploy == true) &&
+      vars.DEPLOYMENTS_ENABLED == 'true' &&
+      needs.publish.result == 'success'
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Connect to Tailscale
+        uses: tailscale/github-action@v3
+        with:
+          oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
+          oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
+          tags: tag:github-actions
+
+      - name: Redeploy Coolify resources
+        env:
+          COOLIFY_DEPLOY_URL_TEMPLATE: ${{ vars.COOLIFY_DEPLOY_URL_TEMPLATE }}
+          COOLIFY_RESOURCE_UUIDS: ${{ vars.COOLIFY_SILLAGE_RESOURCE_UUIDS }}
+          COOLIFY_TOKEN: ${{ secrets.COOLIFY_TOKEN }}
+          CHANGED_SERVICES: ${{ needs.changes.outputs.matrix }}
+        run: |
+          if [[ -z "${COOLIFY_DEPLOY_URL_TEMPLATE}" || -z "${COOLIFY_RESOURCE_UUIDS}" || -z "${COOLIFY_TOKEN}" || -z "${CHANGED_SERVICES}" ]]; then
+            echo "Coolify deployment is not configured"
+            echo "Expected COOLIFY_DEPLOY_URL_TEMPLATE, COOLIFY_SILLAGE_RESOURCE_UUIDS, COOLIFY_TOKEN and changed service matrix"
+            exit 1
+          fi
+
+          node <<'NODE'
+          const { execFileSync } = require("node:child_process");
+          const changed = JSON.parse(process.env.CHANGED_SERVICES).include.map(({ name }) => name);
+          const entries = process.env.COOLIFY_RESOURCE_UUIDS.split(",").map((entry) => entry.trim()).filter(Boolean);
+          const resources = new Map();
+          entries.forEach((entry, index) => {
+            if (entry.includes("=")) {
+              const [name, uuid] = entry.split("=", 2).map((value) => value.trim());
+              resources.set(name, uuid);
+            } else {
+              // Keep this positional fallback aligned with the existing
+              // Coolify variable order: api, landing, memory.
+              resources.set(["api", "landing", "memory"][index], entry);
+            }
+          });
+
+          for (const name of changed) {
+            const uuid = resources.get(name);
+            if (!uuid) {
+              console.error(`No Coolify resource UUID configured for rebuilt service: ${name}`);
+              process.exitCode = 1;
+              continue;
+            }
+            const url = process.env.COOLIFY_DEPLOY_URL_TEMPLATE.replace("UUID", uuid);
+            console.log(`Redeploying ${name} (${uuid})`);
+            execFileSync("curl", [
+              "-fsS", "--connect-timeout", "10", "--max-time", "30",
+              "-H", `Authorization: Bearer ${process.env.COOLIFY_TOKEN}`,
+              url,
+            ], { stdio: "inherit" });
+          }
+          NODE

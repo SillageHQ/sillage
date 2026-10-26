@@ -1,0 +1,128 @@
+services:
+  api:
+    image: ghcr.io/jb-holdings/silage-hq-api:${IMAGE_TAG:-main}
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: 3001
+      DATABASE_URL: postgresql://sb:${POSTGRES_PASSWORD:?POSTGRES_PASSWORD must be set}@postgres:5432/secondbrain
+      MEMORY_URL: http://memory:8000
+      MEMORY_INTERNAL_TOKEN: ${MEMORY_INTERNAL_TOKEN:?MEMORY_INTERNAL_TOKEN must be set}
+      FALKORDB_HOST: falkordb
+      FALKORDB_PORT: 6379
+      FALKORDB_PASSWORD: ${FALKORDB_PASSWORD:?FALKORDB_PASSWORD must be set}
+      BETTER_AUTH_SECRET: ${BETTER_AUTH_SECRET:?BETTER_AUTH_SECRET must be set}
+      BETTER_AUTH_URL: ${BETTER_AUTH_URL:?BETTER_AUTH_URL must be set}
+      BETTER_AUTH_COOKIE_DOMAIN: ${BETTER_AUTH_COOKIE_DOMAIN:-}
+      BETTER_AUTH_TRUSTED_ORIGINS: ${BETTER_AUTH_TRUSTED_ORIGINS:?BETTER_AUTH_TRUSTED_ORIGINS must be set}
+      BETTER_AUTH_PASSKEY_RP_ID: ${BETTER_AUTH_PASSKEY_RP_ID:?BETTER_AUTH_PASSKEY_RP_ID must be set}
+      BETTER_AUTH_PASSKEY_ORIGINS: ${BETTER_AUTH_PASSKEY_ORIGINS:?BETTER_AUTH_PASSKEY_ORIGINS must be set}
+      CORS_ALLOWED_ORIGINS: ${CORS_ALLOWED_ORIGINS:?CORS_ALLOWED_ORIGINS must be set}
+      APP_API_URL: ${APP_API_URL:?APP_API_URL must be set}
+      SITE_URL: ${SITE_URL:?SITE_URL must be set}
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:?GOOGLE_CLIENT_ID must be set}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET:?GOOGLE_CLIENT_SECRET must be set}
+      CLOUDFLARE_ACCOUNT_ID: ${CLOUDFLARE_ACCOUNT_ID:?CLOUDFLARE_ACCOUNT_ID must be set}
+      CLOUDFLARE_EMAIL_API_TOKEN: ${CLOUDFLARE_EMAIL_API_TOKEN:?CLOUDFLARE_EMAIL_API_TOKEN must be set}
+      AUTH_EMAIL_FROM: ${AUTH_EMAIL_FROM:?AUTH_EMAIL_FROM must be set}
+      LUMAIL_API_TOKEN: ${LUMAIL_API_TOKEN:?LUMAIL_API_TOKEN must be set}
+      LUMAIL_WAITLIST_TAG: ${LUMAIL_WAITLIST_TAG:-beta}
+      WAITLIST_INTERNAL_TOKEN: ${WAITLIST_INTERNAL_TOKEN:?WAITLIST_INTERNAL_TOKEN must be set}
+      TURNSTILE_SECRET_KEY: ${TURNSTILE_SECRET_KEY:?TURNSTILE_SECRET_KEY must be set}
+      PADDLE_ENVIRONMENT: ${PADDLE_ENVIRONMENT:-sandbox}
+      PADDLE_API_KEY: ${PADDLE_API_KEY:?PADDLE_API_KEY must be set}
+      PADDLE_PRICE_ID: ${PADDLE_PRICE_ID:?PADDLE_PRICE_ID must be set}
+      PADDLE_WEBHOOK_SECRET: ${PADDLE_WEBHOOK_SECRET:?PADDLE_WEBHOOK_SECRET must be set}
+      REQUIRE_BILLING_ACCESS: ${REQUIRE_BILLING_ACCESS:-false}
+      RELEASE_REGISTRY_TOKEN: ${RELEASE_REGISTRY_TOKEN:-}
+      R2_PUBLIC_BASE_URL: ${R2_PUBLIC_BASE_URL:-}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      falkordb:
+        condition: service_healthy
+      memory:
+        condition: service_healthy
+    ports:
+      - "3001"
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3001/health').then(r => { if (!r.ok) process.exit(1) })"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  memory:
+    image: ghcr.io/jb-holdings/silage-hq-memory:${IMAGE_TAG:-main}
+    restart: unless-stopped
+    environment:
+      FALKORDB_HOST: falkordb
+      FALKORDB_PORT: 6379
+      FALKORDB_PASSWORD: ${FALKORDB_PASSWORD:?FALKORDB_PASSWORD must be set}
+      MEMORY_INTERNAL_TOKEN: ${MEMORY_INTERNAL_TOKEN:?MEMORY_INTERNAL_TOKEN must be set}
+      MEMORY_CORS_ALLOWED_ORIGINS: http://api:3001
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:?OPENROUTER_API_KEY must be set}
+      OPENROUTER_MODEL: ${OPENROUTER_MODEL:-}
+      OPENROUTER_EMBEDDING_MODEL: ${OPENROUTER_EMBEDDING_MODEL:-}
+      OPENROUTER_RERANK_MODEL: ${OPENROUTER_RERANK_MODEL:-}
+      OCR_IMAGES: ${OCR_IMAGES:-1}
+      OCR_MAX_IMAGES: ${OCR_MAX_IMAGES:-12}
+    depends_on:
+      falkordb:
+        condition: service_healthy
+    expose:
+      - "8000"
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://127.0.0.1:8000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  landing:
+    image: ghcr.io/jb-holdings/silage-hq-landing:${IMAGE_TAG:-main}
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      HOST: 0.0.0.0
+      API_URL: http://api:3001
+      WAITLIST_INTERNAL_TOKEN: ${WAITLIST_INTERNAL_TOKEN:?WAITLIST_INTERNAL_TOKEN must be set}
+    depends_on:
+      api:
+        condition: service_healthy
+    ports:
+      - "3000"
+
+  postgres:
+    image: pgvector/pgvector:pg16
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: sb
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD must be set}
+      POSTGRES_DB: secondbrain
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./services/api/prisma/enable-pgvector.sql:/docker-entrypoint-initdb.d/01-enable-pgvector.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sb -d secondbrain"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  falkordb:
+    image: falkordb/falkordb-server@sha256:8b676c2e72271f5d06541136eb214b0db50180636cc86f7ee38d63287e9b8d13
+    restart: unless-stopped
+    environment:
+      FALKORDB_PASSWORD: ${FALKORDB_PASSWORD:?FALKORDB_PASSWORD must be set}
+      REDIS_ARGS: --requirepass ${FALKORDB_PASSWORD:?FALKORDB_PASSWORD must be set} --appendonly no
+      FALKORDB_ARGS: THREAD_COUNT 4 TIMEOUT_MAX 30000
+    volumes:
+      - falkordb-data:/var/lib/falkordb/data
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli -a $$FALKORDB_PASSWORD ping | grep PONG"]
+      interval: 10s
+      timeout: 10s
+      retries: 10
+
+volumes:
+  postgres-data:
+  falkordb-data:

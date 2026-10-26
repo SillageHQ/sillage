@@ -1,0 +1,28 @@
+{
+  "package": "@tobilu/qmd",
+  "version": "2.5.3",
+  "pinnedAt": "2026-07-19",
+  "modes": {
+    "search": "BM25 full-text only",
+    "vsearch": "vector semantic only",
+    "query": "hybrid + expansion + rerank (primary baseline)"
+  },
+  "defaultMode": "query",
+  "models": {
+    "embed": "hf:ggml-org/embeddinggemma-300M-GGUF/embeddinggemma-300M-Q8_0.gguf",
+    "rerank": "hf:ggml-org/Qwen3-Reranker-0.6B-Q8_0-GGUF/qwen3-reranker-0.6b-q8_0.gguf",
+    "generate": "hf:tobil/qmd-query-expansion-1.7B-gguf/qmd-query-expansion-1.7B-q4_k_m.gguf"
+  },
+  "cli": {
+    "limit": 10,
+    "collectionName": "sillage-eval",
+    "jsonFlag": "--json",
+    "noRerankFlag": "--no-rerank"
+  },
+  "notes": [
+    "Install: npm install -g @tobilu/qmd@2.5.3",
+    "First run downloads local GGUF models into ~/.cache/qmd/models/",
+    "Adapter isolates QMD config/cache under evaluation/artifacts/qmd-home/",
+    "Never index a real user vault for this benchmark"
+  ]
+}

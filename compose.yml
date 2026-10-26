@@ -1,0 +1,57 @@
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: sb
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD must be set}
+      POSTGRES_DB: secondbrain
+    ports:
+      - "127.0.0.1:5433:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./services/api/prisma/enable-pgvector.sql:/docker-entrypoint-initdb.d/01-enable-pgvector.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sb -d secondbrain"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  falkordb:
+    image: falkordb/falkordb-server@sha256:8b676c2e72271f5d06541136eb214b0db50180636cc86f7ee38d63287e9b8d13
+    environment:
+      FALKORDB_PASSWORD: ${FALKORDB_PASSWORD:?FALKORDB_PASSWORD must be set}
+      REDIS_ARGS: --requirepass ${FALKORDB_PASSWORD:?FALKORDB_PASSWORD must be set} --appendonly yes
+      FALKORDB_ARGS: THREAD_COUNT 4 TIMEOUT_MAX 30000
+    ports:
+      - "127.0.0.1:6380:6379"
+    volumes:
+      # FalkorDB stores its database under this path; /data is only a symlink in
+      # the upstream image and does not persist the actual graph files.
+      - falkordb-data:/var/lib/falkordb/data
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli -a $$FALKORDB_PASSWORD ping | grep PONG"]
+      interval: 10s
+      timeout: 10s
+      retries: 10
+    restart: unless-stopped
+
+  searxng:
+    image: searxng/searxng:latest
+    ports:
+      - "127.0.0.1:8080:8080"
+    volumes:
+      - ./infra/searxng:/etc/searxng:rw
+    environment:
+      SEARXNG_BASE_URL: ${SEARXNG_BASE_URL:-http://127.0.0.1:8080/}
+      INSTANCE_NAME: ${SEARXNG_INSTANCE_NAME:-Sillage Search}
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q -O - 'http://127.0.0.1:8080/search?q=sillage&format=json' >/dev/null"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+    restart: unless-stopped
+
+volumes:
+  postgres-data:
+  falkordb-data:

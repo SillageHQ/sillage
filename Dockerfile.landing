@@ -1,0 +1,46 @@
+FROM ghcr.io/pnpm/pnpm:11 AS build
+
+RUN pnpm runtime set node 22.12 -g
+
+WORKDIR /app
+
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+COPY apps/landing/package.json ./apps/landing/package.json
+
+RUN pnpm install --filter @sb/landing --frozen-lockfile
+
+COPY apps/landing ./apps/landing
+
+ARG VITE_API_URL
+ARG VITE_SITE_URL
+ARG VITE_GOOGLE_CLIENT_ID
+ARG VITE_GOOGLE_ANALYTICS_ID
+ARG VITE_POSTHOG_KEY
+ARG VITE_POSTHOG_HOST
+ARG VITE_TURNSTILE_SITE_KEY
+ENV VITE_API_URL=$VITE_API_URL
+ENV VITE_SITE_URL=$VITE_SITE_URL
+ENV VITE_GOOGLE_CLIENT_ID=$VITE_GOOGLE_CLIENT_ID
+ENV VITE_GOOGLE_ANALYTICS_ID=$VITE_GOOGLE_ANALYTICS_ID
+ENV VITE_POSTHOG_KEY=$VITE_POSTHOG_KEY
+ENV VITE_POSTHOG_HOST=$VITE_POSTHOG_HOST
+ENV VITE_TURNSTILE_SITE_KEY=$VITE_TURNSTILE_SITE_KEY
+
+RUN pnpm --filter @sb/landing build
+
+
+FROM node:22.12-alpine AS runner
+
+WORKDIR /app
+
+RUN apk add --no-cache curl
+
+ENV NODE_ENV=production
+ENV PORT=3000
+ENV HOST=0.0.0.0
+
+COPY --from=build /app/apps/landing/.output ./.output
+
+EXPOSE 3000
+
+CMD ["node", ".output/server/index.mjs"]

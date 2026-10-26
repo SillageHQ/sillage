@@ -1,0 +1,14 @@
+packages:
+  - "apps/*"
+  - "services/api"
+  - "packages/*"
+minimumReleaseAge: 10080
+minimumReleaseAgeStrict: false
+trustLockfile: true
+allowBuilds:
+  '@prisma/client': true
+  '@prisma/engines': true
+  core-js: true
+  esbuild: true
+  prisma: true
+  sharp: false

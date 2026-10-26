@@ -1,0 +1,2668 @@
+{
+  "version": 2,
+  "description": "Phase 0 synthetic corpus for QMD catch-up evaluation (reproducible, isolated).",
+  "documents": [
+    {
+      "path": "__evaluation__/finance/public-debt.md",
+      "title": "Public debt",
+      "content": "# Public debt\n\nPublic debt sustainability depends on the interest-growth differential, the primary balance, and the maturity structure. A country can stabilize its debt ratio when nominal growth offsets financing costs.\n\nCode: DEBT-SUST-2024. Acronym: IGD (interest-growth differential)."
+    },
+    {
+      "path": "__evaluation__/finance/emergency-fund.md",
+      "title": "Emergency fund",
+      "content": "# Emergency fund\n\nKeep six months of essential expenses in liquid, low-risk accounts. Refill the emergency fund before increasing speculative investments.\n\nTarget amount code: EF-6M-LIQUID."
+    },
+    {
+      "path": "__evaluation__/finance/tax-id.md",
+      "title": "Tax identifiers",
+      "content": "# Tax identifiers\n\nFrench personal tax number SIREN-DEMO-732849 is only for evaluation. VAT form FR-TVA-CA3 is filed quarterly. Quote: \"Always keep the original receipt.\"\n\nIBAN demo: FR76 ACCT-000035 7890 189."
+    },
+    {
+      "path": "__evaluation__/projects/alpha.md",
+      "title": "Project Alpha",
+      "content": "# Project Alpha\n\nThe launch decision is September 15. The team chose a small private beta before public access, with Alice responsible for onboarding.\n\nRelated: [[Alice]] [[Second Brain product]]\nTicket: ALPHA-LAUNCH-0915."
+    },
+    {
+      "path": "__evaluation__/projects/alpha-postmortem.md",
+      "title": "Alpha postmortem",
+      "content": "# Alpha postmortem\n\nAfter launch, onboarding drop-off was 40% at the second screen. Alice proposed a single-step welcome flow. Decision owner: Alice. Linked project: [[Project Alpha]]."
+    },
+    {
+      "path": "__evaluation__/projects/second-brain.md",
+      "title": "Second Brain product",
+      "content": "# Second Brain\n\nThe product should keep Obsidian as the source of truth. Assistant answers become personal knowledge only after explicit user review and vault write.\n\nStack acronym: ORAG (Obsidian Retrieval Augmented Graph)."
+    },
+    {
+      "path": "__evaluation__/projects/beta-rename.md",
+      "title": "Product rename history",
+      "content": "# Product rename history\n\n2024-01: codename Nightjar.\n2024-06: renamed to Second Brain for user testing.\n2025-01: brand Sillage adopted publicly while vault paths stay Second Brain."
+    },
+    {
+      "path": "__evaluation__/health/sleep.md",
+      "title": "Sleep routine",
+      "content": "# Sleep routine\n\nStop caffeine after 2 PM, dim screens one hour before bed, and keep the bedroom cool. The target is eight hours with a consistent wake time."
+    },
+    {
+      "path": "__evaluation__/health/running.md",
+      "title": "Running plan",
+      "content": "# Running plan\n\nRun three times per week: one easy session, one interval session, and one long slow run. Increase weekly distance by no more than ten percent."
+    },
+    {
+      "path": "__evaluation__/health/nutrition-v1.md",
+      "title": "Nutrition preference v1",
+      "content": "# Nutrition preference (2023)\n\nPrefer high-protein breakfasts and intermittent fasting 16:8. Avoid dairy on weekdays. Valid until superseded in 2024."
+    },
+    {
+      "path": "__evaluation__/health/nutrition-v2.md",
+      "title": "Nutrition preference v2",
+      "content": "# Nutrition preference (2024)\n\nCurrent preference: three regular meals, no intermittent fasting. Dairy is fine. This supersedes the 2023 nutrition preference."
+    },
+    {
+      "path": "__evaluation__/books/library.md",
+      "title": "Reading list",
+      "content": "# Reading list\n\nThe library includes Thinking in Systems by Donella Meadows, The Beginning of Infinity by David Deutsch, and The Design of Everyday Things by Don Norman."
+    },
+    {
+      "path": "__evaluation__/preferences/writing.md",
+      "title": "Writing preferences",
+      "content": "# Writing preferences\n\nPrefer concise prose, concrete examples, and short paragraphs. Avoid inflated introductions and excessive headings."
+    },
+    {
+      "path": "__evaluation__/preferences/language.md",
+      "title": "Language preferences",
+      "content": "# Language preferences\n\nRépondre en français par défaut. Utiliser un ton direct et concret. Acronyme interne: FR-DEFAULT-TONE."
+    },
+    {
+      "path": "__evaluation__/decisions/database.md",
+      "title": "Database decision",
+      "content": "# Database decision\n\nPostgreSQL is the application source of truth. Neo4j stores graph relations and pgvector stores derived document chunks."
+    },
+    {
+      "path": "__evaluation__/decisions/database-old.md",
+      "title": "Database decision (superseded)",
+      "content": "# Database decision (2023, superseded)\n\nOriginally chose MongoDB for flexibility. This decision was replaced by PostgreSQL in 2024. Do not treat MongoDB as current."
+    },
+    {
+      "path": "__evaluation__/travel/riga.md",
+      "title": "Riga trip",
+      "content": "# Riga trip\n\nVisit the Central Market on Saturday morning and book the Art Nouveau district walk for Sunday. The preferred hotel area is the quiet centre."
+    },
+    {
+      "path": "__evaluation__/travel/lisbon.md",
+      "title": "Lisbon trip",
+      "content": "# Lisbon trip\n\nFly into LIS on 2025-03-12. Stay in Alfama. Must-try: pastéis de Belém. Booking code: LIS-ALF-0312."
+    },
+    {
+      "path": "__evaluation__/people/alice.md",
+      "title": "Alice",
+      "content": "# Alice\n\nAlice leads customer onboarding for Project Alpha. She prefers asynchronous design reviews on Tuesday afternoons.\n\nEmail demo: alice.onboarding@example.test"
+    },
+    {
+      "path": "__evaluation__/people/bob.md",
+      "title": "Bob",
+      "content": "# Bob\n\nBob owns infrastructure for Project Alpha. He prefers synchronous standups on Monday mornings and tracks uptime with code UPTIME-SLA-99."
+    },
+    {
+      "path": "__evaluation__/learning/rag.md",
+      "title": "RAG notes",
+      "content": "# Retrieval augmented generation\n\nHybrid retrieval combines lexical search, vector similarity, graph facts, reciprocal rank fusion, and reranking. Citations must retain stable chunk provenance."
+    },
+    {
+      "path": "__evaluation__/learning/bm25.md",
+      "title": "BM25 notes",
+      "content": "# BM25 notes\n\nBM25 ranks documents by term frequency with length normalization and inverse document frequency. Exact title matches should outrank weak body matches."
+    },
+    {
+      "path": "__evaluation__/meetings/2024-11-01-roadmap.md",
+      "title": "Roadmap meeting 2024-11-01",
+      "content": "# Roadmap meeting 2024-11-01\n\nDecision: delay public launch of Project Alpha to mid-September. Alice tracks onboarding metrics. Bob owns reliability gates."
+    },
+    {
+      "path": "__evaluation__/meetings/2025-01-10-brand.md",
+      "title": "Brand meeting 2025-01-10",
+      "content": "# Brand meeting 2025-01-10\n\nDecision: public brand is Sillage. Internal vault name remains Second Brain. Marketing code: BRAND-SILLAGE-2025."
+    },
+    {
+      "path": "__evaluation__/adversarial/debt-ratio-myth.md",
+      "title": "Debt ratio myth",
+      "content": "# Debt ratio myth\n\nSome blogs claim debt sustainability only depends on absolute debt size. This note is intentionally wrong relative to the real public-debt note. Ignore absolute size as the sole driver."
+    },
+    {
+      "path": "__evaluation__/adversarial/alpha-fake-date.md",
+      "title": "Alpha fake date",
+      "content": "# Alpha fake date\n\nRumors say Project Alpha launches on December 1. This is incorrect evaluation bait. The real launch decision remains September 15 in the official Alpha note."
+    },
+    {
+      "path": "__evaluation__/adversarial/sleep-eight-is-wrong.md",
+      "title": "Sleep rumor",
+      "content": "# Sleep rumor\n\nA viral post claims the target is five hours of sleep with late caffeine. This contradicts the real sleep routine note and must not be retrieved as truth."
+    },
+    {
+      "path": "__evaluation__/notes/wikilink-hub.md",
+      "title": "Wikilink hub",
+      "content": "# Wikilink hub\n\nIndex of related notes: [[Project Alpha]], [[Alice]], [[Database decision]], [[RAG notes]], [[Riga trip]]. Tags: #evaluation #hub."
+    },
+    {
+      "path": "__evaluation__/notes/acronyms.md",
+      "title": "Acronym glossary",
+      "content": "# Acronym glossary\n\nORAG: Obsidian Retrieval Augmented Graph.\nIGD: interest-growth differential.\nRRF: reciprocal rank fusion.\nHNSW: hierarchical navigable small world."
+    },
+    {
+      "path": "__evaluation__/notes/quotes.md",
+      "title": "Memorable quotes",
+      "content": "# Memorable quotes\n\nQuote from vault policy: \"Assistant answers become personal knowledge only after explicit user review.\" Another line: \"Obsidian remains canonical.\""
+    }
+  ],
+  "queries": [
+    {
+      "id": "lexical_exact-001",
+      "query": "DEBT-SUST-2024",
+      "category": "lexical_exact",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/finance/public-debt.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "lexical_exact-002",
+      "query": "IGD interest-growth",
+      "category": "lexical_exact",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/finance/public-debt.md",
+        "__evaluation__/notes/acronyms.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "lexical_exact-003",
+      "query": "EF-6M-LIQUID",
+      "category": "lexical_exact",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/finance/emergency-fund.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "lexical_exact-004",
+      "query": "SIREN-DEMO-732849",
+      "category": "lexical_exact",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/finance/tax-id.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "lexical_exact-005",
+      "query": "FR-TVA-CA3",
+      "category": "lexical_exact",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/finance/tax-id.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "lexical_exact-006",
+      "query": "FR76 3000 6000 0112",
+      "category": "lexical_exact",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/finance/tax-id.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "lexical_exact-007",
+      "query": "ALPHA-LAUNCH-0915",
+      "category": "lexical_exact",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/projects/alpha.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "lexical_exact-008",
+      "query": "September 15",
+      "category": "lexical_exact",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/projects/alpha.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "lexical_exact-009",
+      "query": "ORAG",
+      "category": "lexical_exact",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/projects/second-brain.md",
+        "__evaluation__/notes/acronyms.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "lexical_exact-010",
+      "query": "UPTIME-SLA-99",
+      "category": "lexical_exact",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/people/bob.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "lexical_exact-011",
+      "query": "alice.onboarding@example.test",
+      "category": "lexical_exact",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/people/alice.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "lexical_exact-012",
+      "query": "LIS-ALF-0312",
+      "category": "lexical_exact",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/travel/lisbon.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "lexical_exact-013",
+      "query": "BRAND-SILLAGE-2025",
+      "category": "lexical_exact",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/meetings/2025-01-10-brand.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "lexical_exact-014",
+      "query": "FR-DEFAULT-TONE",
+      "category": "lexical_exact",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/preferences/language.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "lexical_exact-015",
+      "query": "Donella Meadows",
+      "category": "lexical_exact",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/books/library.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "lexical_exact-016",
+      "query": "David Deutsch",
+      "category": "lexical_exact",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/books/library.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "lexical_exact-017",
+      "query": "Don Norman",
+      "category": "lexical_exact",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/books/library.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "lexical_exact-018",
+      "query": "pastéis de Belém",
+      "category": "lexical_exact",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/travel/lisbon.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "lexical_exact-019",
+      "query": "Art Nouveau district",
+      "category": "lexical_exact",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/travel/riga.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "lexical_exact-020",
+      "query": "Central Market",
+      "category": "lexical_exact",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/travel/riga.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "lexical_exact-021",
+      "query": "reciprocal rank fusion",
+      "category": "lexical_exact",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/learning/rag.md",
+        "__evaluation__/notes/acronyms.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "lexical_exact-022",
+      "query": "hierarchical navigable small world",
+      "category": "lexical_exact",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/notes/acronyms.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "lexical_exact-023",
+      "query": "Nightjar",
+      "category": "lexical_exact",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/projects/beta-rename.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "lexical_exact-024",
+      "query": "Sillage",
+      "category": "lexical_exact",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/projects/beta-rename.md",
+        "__evaluation__/meetings/2025-01-10-brand.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "lexical_exact-025",
+      "query": "Always keep the original receipt",
+      "category": "lexical_exact",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/finance/tax-id.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "lexical_exact-026",
+      "query": "Obsidian remains canonical",
+      "category": "lexical_exact",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/notes/quotes.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "lexical_exact-027",
+      "query": "private beta before public access",
+      "category": "lexical_exact",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/projects/alpha.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "lexical_exact-028",
+      "query": "six months of essential expenses",
+      "category": "lexical_exact",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/finance/emergency-fund.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "lexical_exact-029",
+      "query": "Stop caffeine after 2 PM",
+      "category": "lexical_exact",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/health/sleep.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "lexical_exact-030",
+      "query": "ten percent",
+      "category": "lexical_exact",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/health/running.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "lexical_exact-031",
+      "query": "MongoDB for flexibility",
+      "category": "lexical_exact",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/decisions/database-old.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "lexical_exact-032",
+      "query": "pgvector stores derived document chunks",
+      "category": "lexical_exact",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/decisions/database.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "lexical_exact-033",
+      "query": "asynchronous design reviews on Tuesday",
+      "category": "lexical_exact",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/people/alice.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "lexical_exact-034",
+      "query": "Monday mornings",
+      "category": "lexical_exact",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/people/bob.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "lexical_exact-035",
+      "query": "2025-03-12",
+      "category": "lexical_exact",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/travel/lisbon.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "lexical_exact-036",
+      "query": "mid-September",
+      "category": "lexical_exact",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/meetings/2024-11-01-roadmap.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "lexical_exact-037",
+      "query": "drop-off was 40%",
+      "category": "lexical_exact",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/projects/alpha-postmortem.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "lexical_exact-038",
+      "query": "Thinking in Systems",
+      "category": "lexical_exact",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/books/library.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "lexical_exact-039",
+      "query": "Beginning of Infinity",
+      "category": "lexical_exact",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/books/library.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "lexical_exact-040",
+      "query": "Design of Everyday Things",
+      "category": "lexical_exact",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/books/library.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "semantic-041",
+      "query": "What keeps sovereign borrowing sustainable over time?",
+      "category": "semantic",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/finance/public-debt.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "semantic-042",
+      "query": "How can a government stabilize its leverage ratio?",
+      "category": "semantic",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/finance/public-debt.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "semantic-043",
+      "query": "Which fiscal gap matters for national indebtedness?",
+      "category": "semantic",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/finance/public-debt.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "semantic-044",
+      "query": "How large a rainy-day cash buffer did I want?",
+      "category": "semantic",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/finance/emergency-fund.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "semantic-045",
+      "query": "What should I restore before taking investment risk?",
+      "category": "semantic",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/finance/emergency-fund.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "semantic-046",
+      "query": "Where should money for surprises live?",
+      "category": "semantic",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/finance/emergency-fund.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "semantic-047",
+      "query": "When does the alpha product go live?",
+      "category": "semantic",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/projects/alpha.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "semantic-048",
+      "query": "Who owns first-user setup for the launch?",
+      "category": "semantic",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/projects/alpha.md",
+        "__evaluation__/people/alice.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "semantic-049",
+      "query": "What staged release approach was selected?",
+      "category": "semantic",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/projects/alpha.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "semantic-050",
+      "query": "What system remains the canonical knowledge store?",
+      "category": "semantic",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/projects/second-brain.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "semantic-051",
+      "query": "Under what condition may a model reply become durable knowledge?",
+      "category": "semantic",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/projects/second-brain.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "semantic-052",
+      "query": "Does the product silently learn every chat answer?",
+      "category": "semantic",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/projects/second-brain.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "semantic-053",
+      "query": "Describe my wind-down habit before sleep.",
+      "category": "semantic",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/health/sleep.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "semantic-054",
+      "query": "After which clock time should coffee stop?",
+      "category": "semantic",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/health/sleep.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "semantic-055",
+      "query": "How long should a night of rest last?",
+      "category": "semantic",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/health/sleep.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "semantic-056",
+      "query": "What trio of weekly runs is planned?",
+      "category": "semantic",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/health/running.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "semantic-057",
+      "query": "What ceiling limits mileage growth each week?",
+      "category": "semantic",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/health/running.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "semantic-058",
+      "query": "Which session should stay easy and extended?",
+      "category": "semantic",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/health/running.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "semantic-059",
+      "query": "Which systems-thinking author appears on my shelf?",
+      "category": "semantic",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/books/library.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "semantic-060",
+      "query": "Is there a Deutsch title in the collection?",
+      "category": "semantic",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/books/library.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "semantic-061",
+      "query": "Which UX design classic is listed?",
+      "category": "semantic",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/books/library.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "semantic-062",
+      "query": "How should written text feel?",
+      "category": "semantic",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/preferences/writing.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "semantic-063",
+      "query": "Which writing patterns should I avoid?",
+      "category": "semantic",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/preferences/writing.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "semantic-064",
+      "query": "Do I enjoy long preamble sections?",
+      "category": "semantic",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/preferences/writing.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "semantic-065",
+      "query": "Which database is authoritative for the app?",
+      "category": "semantic",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/decisions/database.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "semantic-066",
+      "query": "Where do embedded passages live?",
+      "category": "semantic",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/decisions/database.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "semantic-067",
+      "query": "What role does Neo4j play?",
+      "category": "semantic",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/decisions/database.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "semantic-068",
+      "query": "Saturday morning plan in Latvia's capital?",
+      "category": "semantic",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/travel/riga.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "semantic-069",
+      "query": "When is the architectural stroll?",
+      "category": "semantic",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/travel/riga.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "semantic-070",
+      "query": "Preferred lodging area in Riga?",
+      "category": "semantic",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/travel/riga.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "semantic-071",
+      "query": "What is Alice's main responsibility?",
+      "category": "semantic",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/people/alice.md",
+        "__evaluation__/projects/alpha.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "semantic-072",
+      "query": "When does Alice want design feedback?",
+      "category": "semantic",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/people/alice.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "semantic-073",
+      "query": "Are Alice's reviews live meetings?",
+      "category": "semantic",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/people/alice.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "semantic-074",
+      "query": "What ingredients make retrieval hybrid?",
+      "category": "semantic",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/learning/rag.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "semantic-075",
+      "query": "Why must citation identifiers stay stable?",
+      "category": "semantic",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/learning/rag.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "semantic-076",
+      "query": "What merges lexical and semantic candidates?",
+      "category": "semantic",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/learning/rag.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "semantic-077",
+      "query": "What does BM25 optimize for?",
+      "category": "semantic",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/learning/bm25.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "semantic-078",
+      "query": "Where should I stay in Lisbon?",
+      "category": "semantic",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/travel/lisbon.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "semantic-079",
+      "query": "What pastry is required in Lisbon?",
+      "category": "semantic",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/travel/lisbon.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "semantic-080",
+      "query": "Who owns reliability for Alpha?",
+      "category": "semantic",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/people/bob.md",
+        "__evaluation__/meetings/2024-11-01-roadmap.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "conversational-081",
+      "query": "And when is that?",
+      "category": "conversational",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/projects/alpha.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": [],
+      "conversation": [
+        {
+          "role": "user",
+          "content": "Tell me about Project Alpha launch."
+        },
+        {
+          "role": "assistant",
+          "content": "Project Alpha has a planned launch."
+        }
+      ]
+    },
+    {
+      "id": "conversational-082",
+      "query": "Who handles that part?",
+      "category": "conversational",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/people/alice.md",
+        "__evaluation__/projects/alpha.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": [],
+      "conversation": [
+        {
+          "role": "user",
+          "content": "Remind me about Alpha onboarding."
+        },
+        {
+          "role": "assistant",
+          "content": "Onboarding is part of the Alpha plan."
+        }
+      ]
+    },
+    {
+      "id": "conversational-083",
+      "query": "How much again?",
+      "category": "conversational",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/finance/emergency-fund.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": [],
+      "conversation": [
+        {
+          "role": "user",
+          "content": "What about my emergency cash buffer?"
+        },
+        {
+          "role": "assistant",
+          "content": "You defined a cash reserve target."
+        }
+      ]
+    },
+    {
+      "id": "conversational-084",
+      "query": "After what time?",
+      "category": "conversational",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/health/sleep.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": [],
+      "conversation": [
+        {
+          "role": "user",
+          "content": "My caffeine cutoff for sleep?"
+        },
+        {
+          "role": "assistant",
+          "content": "You have a caffeine rule before bed."
+        }
+      ]
+    },
+    {
+      "id": "conversational-085",
+      "query": "Which three?",
+      "category": "conversational",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/health/running.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": [],
+      "conversation": [
+        {
+          "role": "user",
+          "content": "What are my weekly running sessions?"
+        },
+        {
+          "role": "assistant",
+          "content": "You structured the week into sessions."
+        }
+      ]
+    },
+    {
+      "id": "conversational-086",
+      "query": "Is dairy allowed now?",
+      "category": "conversational",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/health/nutrition-v2.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": [],
+      "conversation": [
+        {
+          "role": "user",
+          "content": "What is my current nutrition preference?"
+        },
+        {
+          "role": "assistant",
+          "content": "Your nutrition rules changed recently."
+        }
+      ]
+    },
+    {
+      "id": "conversational-087",
+      "query": "Where do the vectors live?",
+      "category": "conversational",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/decisions/database.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": [],
+      "conversation": [
+        {
+          "role": "user",
+          "content": "Database architecture for the app?"
+        },
+        {
+          "role": "assistant",
+          "content": "Several stores play different roles."
+        }
+      ]
+    },
+    {
+      "id": "conversational-088",
+      "query": "Saturday morning plan?",
+      "category": "conversational",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/travel/riga.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": [],
+      "conversation": [
+        {
+          "role": "user",
+          "content": "My Riga itinerary notes?"
+        },
+        {
+          "role": "assistant",
+          "content": "You planned a weekend in Riga."
+        }
+      ]
+    },
+    {
+      "id": "conversational-089",
+      "query": "What hotel area?",
+      "category": "conversational",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/travel/riga.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": [],
+      "conversation": [
+        {
+          "role": "user",
+          "content": "Riga lodging preference?"
+        },
+        {
+          "role": "assistant",
+          "content": "You noted a preferred district."
+        }
+      ]
+    },
+    {
+      "id": "conversational-090",
+      "query": "Which book by her?",
+      "category": "conversational",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/books/library.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": [],
+      "conversation": [
+        {
+          "role": "user",
+          "content": "Donella Meadows on my reading list?"
+        },
+        {
+          "role": "assistant",
+          "content": "Yes, she appears in the library note."
+        }
+      ]
+    },
+    {
+      "id": "conversational-091",
+      "query": "Do I own his book?",
+      "category": "conversational",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/books/library.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": [],
+      "conversation": [
+        {
+          "role": "user",
+          "content": "Anything by David Deutsch?"
+        },
+        {
+          "role": "assistant",
+          "content": "Your library lists several authors."
+        }
+      ]
+    },
+    {
+      "id": "conversational-092",
+      "query": "What style do I want?",
+      "category": "conversational",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/preferences/writing.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": [],
+      "conversation": [
+        {
+          "role": "user",
+          "content": "My writing preferences?"
+        },
+        {
+          "role": "assistant",
+          "content": "You wrote rules for prose style."
+        }
+      ]
+    },
+    {
+      "id": "conversational-093",
+      "query": "In which language by default?",
+      "category": "conversational",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/preferences/language.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": [],
+      "conversation": [
+        {
+          "role": "user",
+          "content": "Language settings for answers?"
+        },
+        {
+          "role": "assistant",
+          "content": "You have a default language preference."
+        }
+      ]
+    },
+    {
+      "id": "conversational-094",
+      "query": "Who prefers async reviews?",
+      "category": "conversational",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/people/alice.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": [],
+      "conversation": [
+        {
+          "role": "user",
+          "content": "Team review preferences?"
+        },
+        {
+          "role": "assistant",
+          "content": "Alice and Bob have different styles."
+        }
+      ]
+    },
+    {
+      "id": "conversational-095",
+      "query": "What about Bob's meetings?",
+      "category": "conversational",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/people/bob.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": [],
+      "conversation": [
+        {
+          "role": "user",
+          "content": "How does the infra lead like to meet?"
+        },
+        {
+          "role": "assistant",
+          "content": "Bob has a standing meeting preference."
+        }
+      ]
+    },
+    {
+      "id": "conversational-096",
+      "query": "What was delayed?",
+      "category": "conversational",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/meetings/2024-11-01-roadmap.md",
+        "__evaluation__/projects/alpha.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": [],
+      "conversation": [
+        {
+          "role": "user",
+          "content": "Roadmap meeting outcomes?"
+        },
+        {
+          "role": "assistant",
+          "content": "There was a launch timing decision."
+        }
+      ]
+    },
+    {
+      "id": "conversational-097",
+      "query": "What is the public name?",
+      "category": "conversational",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/meetings/2025-01-10-brand.md",
+        "__evaluation__/projects/beta-rename.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": [],
+      "conversation": [
+        {
+          "role": "user",
+          "content": "Brand decision from January?"
+        },
+        {
+          "role": "assistant",
+          "content": "A public brand was selected."
+        }
+      ]
+    },
+    {
+      "id": "conversational-098",
+      "query": "What booking code?",
+      "category": "conversational",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/travel/lisbon.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": [],
+      "conversation": [
+        {
+          "role": "user",
+          "content": "Lisbon trip details?"
+        },
+        {
+          "role": "assistant",
+          "content": "You stored flight and stay notes."
+        }
+      ]
+    },
+    {
+      "id": "conversational-099",
+      "query": "What was the drop-off issue?",
+      "category": "conversational",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/projects/alpha-postmortem.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": [],
+      "conversation": [
+        {
+          "role": "user",
+          "content": "Alpha postmortem findings?"
+        },
+        {
+          "role": "assistant",
+          "content": "Onboarding metrics were discussed."
+        }
+      ]
+    },
+    {
+      "id": "conversational-100",
+      "query": "Is Obsidian still source of truth?",
+      "category": "conversational",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/projects/second-brain.md",
+        "__evaluation__/notes/quotes.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": [],
+      "conversation": [
+        {
+          "role": "user",
+          "content": "Product knowledge principles?"
+        },
+        {
+          "role": "assistant",
+          "content": "There is a canonical storage rule."
+        }
+      ]
+    },
+    {
+      "id": "conversational-101",
+      "query": "How does hybrid search work?",
+      "category": "conversational",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/learning/rag.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": [],
+      "conversation": [
+        {
+          "role": "user",
+          "content": "My RAG learning notes?"
+        },
+        {
+          "role": "assistant",
+          "content": "You summarized hybrid retrieval."
+        }
+      ]
+    },
+    {
+      "id": "conversational-102",
+      "query": "Why title matches matter?",
+      "category": "conversational",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/learning/bm25.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": [],
+      "conversation": [
+        {
+          "role": "user",
+          "content": "BM25 ranking notes?"
+        },
+        {
+          "role": "assistant",
+          "content": "You wrote about lexical ranking."
+        }
+      ]
+    },
+    {
+      "id": "conversational-103",
+      "query": "What does IGD stand for?",
+      "category": "conversational",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/notes/acronyms.md",
+        "__evaluation__/finance/public-debt.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": [],
+      "conversation": [
+        {
+          "role": "user",
+          "content": "Acronym glossary help?"
+        },
+        {
+          "role": "assistant",
+          "content": "Several finance acronyms are defined."
+        }
+      ]
+    },
+    {
+      "id": "conversational-104",
+      "query": "What was codename before?",
+      "category": "conversational",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/projects/beta-rename.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": [],
+      "conversation": [
+        {
+          "role": "user",
+          "content": "Product rename history?"
+        },
+        {
+          "role": "assistant",
+          "content": "There were multiple names over time."
+        }
+      ]
+    },
+    {
+      "id": "conversational-105",
+      "query": "What should I do Sunday in Riga?",
+      "category": "conversational",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/travel/riga.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": [],
+      "conversation": [
+        {
+          "role": "user",
+          "content": "Continue my Riga weekend plan."
+        },
+        {
+          "role": "assistant",
+          "content": "Saturday is covered; Sunday remains."
+        }
+      ]
+    },
+    {
+      "id": "temporal-106",
+      "query": "What is my current nutrition preference?",
+      "category": "temporal",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/health/nutrition-v2.md"
+      ],
+      "forbiddenPaths": [
+        "__evaluation__/health/nutrition-v1.md"
+      ],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "temporal-107",
+      "query": "Do I still do intermittent fasting?",
+      "category": "temporal",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/health/nutrition-v2.md"
+      ],
+      "forbiddenPaths": [
+        "__evaluation__/health/nutrition-v1.md"
+      ],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "temporal-108",
+      "query": "Is dairy currently allowed?",
+      "category": "temporal",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/health/nutrition-v2.md"
+      ],
+      "forbiddenPaths": [
+        "__evaluation__/health/nutrition-v1.md"
+      ],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "temporal-109",
+      "query": "Which database is the current source of truth?",
+      "category": "temporal",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/decisions/database.md"
+      ],
+      "forbiddenPaths": [
+        "__evaluation__/decisions/database-old.md"
+      ],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "temporal-110",
+      "query": "Is MongoDB still the chosen database?",
+      "category": "temporal",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/decisions/database.md",
+        "__evaluation__/decisions/database-old.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "temporal-111",
+      "query": "What public brand is current in 2025?",
+      "category": "temporal",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/meetings/2025-01-10-brand.md",
+        "__evaluation__/projects/beta-rename.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "temporal-112",
+      "query": "What was the codename before Second Brain?",
+      "category": "temporal",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/projects/beta-rename.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "temporal-113",
+      "query": "When was Sillage adopted publicly?",
+      "category": "temporal",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/projects/beta-rename.md",
+        "__evaluation__/meetings/2025-01-10-brand.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "temporal-114",
+      "query": "What launch timing was decided in the November roadmap meeting?",
+      "category": "temporal",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/meetings/2024-11-01-roadmap.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "temporal-115",
+      "query": "What did the January brand meeting decide?",
+      "category": "temporal",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/meetings/2025-01-10-brand.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "temporal-116",
+      "query": "What was my 2023 nutrition rule about fasting?",
+      "category": "temporal",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/health/nutrition-v1.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "temporal-117",
+      "query": "Which nutrition note supersedes the other?",
+      "category": "temporal",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/health/nutrition-v2.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "temporal-118",
+      "query": "Has the database decision changed since 2023?",
+      "category": "temporal",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/decisions/database.md",
+        "__evaluation__/decisions/database-old.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "temporal-119",
+      "query": "What is the latest Alpha launch timing decision?",
+      "category": "temporal",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/projects/alpha.md",
+        "__evaluation__/meetings/2024-11-01-roadmap.md"
+      ],
+      "forbiddenPaths": [
+        "__evaluation__/adversarial/alpha-fake-date.md"
+      ],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "temporal-120",
+      "query": "What product name is used publicly now?",
+      "category": "temporal",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/meetings/2025-01-10-brand.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "temporal-121",
+      "query": "What vault-facing name remains internal?",
+      "category": "temporal",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/meetings/2025-01-10-brand.md",
+        "__evaluation__/projects/beta-rename.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "temporal-122",
+      "query": "When is the Lisbon flight date?",
+      "category": "temporal",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/travel/lisbon.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "temporal-123",
+      "query": "What was decided about Alpha after launch problems?",
+      "category": "temporal",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/projects/alpha-postmortem.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "temporal-124",
+      "query": "What was replaced by three regular meals?",
+      "category": "temporal",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/health/nutrition-v2.md",
+        "__evaluation__/health/nutrition-v1.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "temporal-125",
+      "query": "Which older database choice must not be treated as current?",
+      "category": "temporal",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/decisions/database-old.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "multi_hop-126",
+      "query": "Who leads onboarding for the project launching mid-September?",
+      "category": "multi_hop",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/people/alice.md",
+        "__evaluation__/projects/alpha.md",
+        "__evaluation__/meetings/2024-11-01-roadmap.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "multi_hop-127",
+      "query": "Connect Alice's review preference to Project Alpha ownership.",
+      "category": "multi_hop",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/people/alice.md",
+        "__evaluation__/projects/alpha.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "multi_hop-128",
+      "query": "Who owns reliability gates mentioned with Alpha launch delay?",
+      "category": "multi_hop",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/people/bob.md",
+        "__evaluation__/meetings/2024-11-01-roadmap.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "multi_hop-129",
+      "query": "How does the Second Brain product principle relate to citation stability?",
+      "category": "multi_hop",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/projects/second-brain.md",
+        "__evaluation__/learning/rag.md",
+        "__evaluation__/notes/quotes.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "multi_hop-130",
+      "query": "What brand was chosen after the Nightjar codename era?",
+      "category": "multi_hop",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/projects/beta-rename.md",
+        "__evaluation__/meetings/2025-01-10-brand.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "multi_hop-131",
+      "query": "Link Bob's SLA code to his Alpha responsibilities.",
+      "category": "multi_hop",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/people/bob.md",
+        "__evaluation__/projects/alpha.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "multi_hop-132",
+      "query": "Which person proposed fixing Alpha onboarding drop-off?",
+      "category": "multi_hop",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/projects/alpha-postmortem.md",
+        "__evaluation__/people/alice.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "multi_hop-133",
+      "query": "How do public debt IGD and the acronym glossary relate?",
+      "category": "multi_hop",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/finance/public-debt.md",
+        "__evaluation__/notes/acronyms.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "multi_hop-134",
+      "query": "What travel booking code pairs with Alfama lodging?",
+      "category": "multi_hop",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/travel/lisbon.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "multi_hop-135",
+      "query": "Which meeting delayed launch and who tracks onboarding metrics?",
+      "category": "multi_hop",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/meetings/2024-11-01-roadmap.md",
+        "__evaluation__/people/alice.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "multi_hop-136",
+      "query": "How does ORAG map to product principles?",
+      "category": "multi_hop",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/projects/second-brain.md",
+        "__evaluation__/notes/acronyms.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "multi_hop-137",
+      "query": "Connect Riga Saturday plan with preferred hotel area.",
+      "category": "multi_hop",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/travel/riga.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "multi_hop-138",
+      "query": "Which stack stores chunks versus graph relations?",
+      "category": "multi_hop",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/decisions/database.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "multi_hop-139",
+      "query": "How do writing preferences interact with French default tone?",
+      "category": "multi_hop",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/preferences/writing.md",
+        "__evaluation__/preferences/language.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "multi_hop-140",
+      "query": "What hub links Project Alpha and Alice?",
+      "category": "multi_hop",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/notes/wikilink-hub.md",
+        "__evaluation__/projects/alpha.md",
+        "__evaluation__/people/alice.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "multi_hop-141",
+      "query": "From postmortem to owner: who should redesign welcome flow?",
+      "category": "multi_hop",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/projects/alpha-postmortem.md",
+        "__evaluation__/people/alice.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "multi_hop-142",
+      "query": "Connect emergency fund rule to speculative investing restraint.",
+      "category": "multi_hop",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/finance/emergency-fund.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "multi_hop-143",
+      "query": "Which authors support systems thinking and infinity themes in my library?",
+      "category": "multi_hop",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/books/library.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "multi_hop-144",
+      "query": "How do BM25 title boosts support hybrid retrieval goals?",
+      "category": "multi_hop",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/learning/bm25.md",
+        "__evaluation__/learning/rag.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "multi_hop-145",
+      "query": "Link brand code BRAND-SILLAGE-2025 to rename history.",
+      "category": "multi_hop",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/meetings/2025-01-10-brand.md",
+        "__evaluation__/projects/beta-rename.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "explicit_note-146",
+      "query": "According to [[Project Alpha]], when is launch?",
+      "category": "explicit_note",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/projects/alpha.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "explicit_note-147",
+      "query": "Open [[Alice]] and summarize her review preference.",
+      "category": "explicit_note",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/people/alice.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "explicit_note-148",
+      "query": "From [[Database decision]], where are vectors stored?",
+      "category": "explicit_note",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/decisions/database.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "explicit_note-149",
+      "query": "Using [[RAG notes]], list hybrid components.",
+      "category": "explicit_note",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/learning/rag.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "explicit_note-150",
+      "query": "In [[Riga trip]], what happens Saturday morning?",
+      "category": "explicit_note",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/travel/riga.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "explicit_note-151",
+      "query": "Read [[Emergency fund]] for the cash target.",
+      "category": "explicit_note",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/finance/emergency-fund.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "explicit_note-152",
+      "query": "Check [[Sleep routine]] for caffeine cutoff.",
+      "category": "explicit_note",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/health/sleep.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "explicit_note-153",
+      "query": "From [[Reading list]], which Meadows book is listed?",
+      "category": "explicit_note",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/books/library.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "explicit_note-154",
+      "query": "Using [[Writing preferences]], what should I avoid?",
+      "category": "explicit_note",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/preferences/writing.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "explicit_note-155",
+      "query": "Open [[Bob]] for the SLA code.",
+      "category": "explicit_note",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/people/bob.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "explicit_note-156",
+      "query": "From [[Lisbon trip]], what is the booking code?",
+      "category": "explicit_note",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/travel/lisbon.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "explicit_note-157",
+      "query": "According to [[Product rename history]], what was Nightjar?",
+      "category": "explicit_note",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/projects/beta-rename.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "explicit_note-158",
+      "query": "In [[Acronym glossary]], what is ORAG?",
+      "category": "explicit_note",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/notes/acronyms.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "explicit_note-159",
+      "query": "From [[Brand meeting 2025-01-10]], what is the public brand?",
+      "category": "explicit_note",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/meetings/2025-01-10-brand.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "explicit_note-160",
+      "query": "Using [[Wikilink hub]], which notes are indexed?",
+      "category": "explicit_note",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/notes/wikilink-hub.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "negative-161",
+      "query": "Salut !",
+      "category": "negative",
+      "requiresRetrieval": false,
+      "expectedPaths": [],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "negative-162",
+      "query": "Thanks",
+      "category": "negative",
+      "requiresRetrieval": false,
+      "expectedPaths": [],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "negative-163",
+      "query": "OK",
+      "category": "negative",
+      "requiresRetrieval": false,
+      "expectedPaths": [],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "negative-164",
+      "query": "How are you?",
+      "category": "negative",
+      "requiresRetrieval": false,
+      "expectedPaths": [],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "negative-165",
+      "query": "Bye",
+      "category": "negative",
+      "requiresRetrieval": false,
+      "expectedPaths": [],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "negative-166",
+      "query": "Merci beaucoup",
+      "category": "negative",
+      "requiresRetrieval": false,
+      "expectedPaths": [],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "negative-167",
+      "query": "Bonjour",
+      "category": "negative",
+      "requiresRetrieval": false,
+      "expectedPaths": [],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "negative-168",
+      "query": "Good morning",
+      "category": "negative",
+      "requiresRetrieval": false,
+      "expectedPaths": [],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "negative-169",
+      "query": "lol",
+      "category": "negative",
+      "requiresRetrieval": false,
+      "expectedPaths": [],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "negative-170",
+      "query": "👍",
+      "category": "negative",
+      "requiresRetrieval": false,
+      "expectedPaths": [],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "negative-171",
+      "query": "Yes",
+      "category": "negative",
+      "requiresRetrieval": false,
+      "expectedPaths": [],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "negative-172",
+      "query": "No",
+      "category": "negative",
+      "requiresRetrieval": false,
+      "expectedPaths": [],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "negative-173",
+      "query": "Continue",
+      "category": "negative",
+      "requiresRetrieval": false,
+      "expectedPaths": [],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "negative-174",
+      "query": "D'accord",
+      "category": "negative",
+      "requiresRetrieval": false,
+      "expectedPaths": [],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "negative-175",
+      "query": "Cool",
+      "category": "negative",
+      "requiresRetrieval": false,
+      "expectedPaths": [],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "negative-176",
+      "query": "Got it",
+      "category": "negative",
+      "requiresRetrieval": false,
+      "expectedPaths": [],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "negative-177",
+      "query": "Understood",
+      "category": "negative",
+      "requiresRetrieval": false,
+      "expectedPaths": [],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "negative-178",
+      "query": "Please wait",
+      "category": "negative",
+      "requiresRetrieval": false,
+      "expectedPaths": [],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "negative-179",
+      "query": "Hmm",
+      "category": "negative",
+      "requiresRetrieval": false,
+      "expectedPaths": [],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "negative-180",
+      "query": "ok thanks!",
+      "category": "negative",
+      "requiresRetrieval": false,
+      "expectedPaths": [],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "adversarial-181",
+      "query": "What controls public debt sustainability?",
+      "category": "adversarial",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/finance/public-debt.md"
+      ],
+      "forbiddenPaths": [
+        "__evaluation__/adversarial/debt-ratio-myth.md"
+      ],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "adversarial-182",
+      "query": "When does Project Alpha launch?",
+      "category": "adversarial",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/projects/alpha.md"
+      ],
+      "forbiddenPaths": [
+        "__evaluation__/adversarial/alpha-fake-date.md"
+      ],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "adversarial-183",
+      "query": "How many hours of sleep am I targeting?",
+      "category": "adversarial",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/health/sleep.md"
+      ],
+      "forbiddenPaths": [
+        "__evaluation__/adversarial/sleep-eight-is-wrong.md"
+      ],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "adversarial-184",
+      "query": "Is absolute debt size the only sustainability driver?",
+      "category": "adversarial",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/finance/public-debt.md"
+      ],
+      "forbiddenPaths": [
+        "__evaluation__/adversarial/debt-ratio-myth.md"
+      ],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "adversarial-185",
+      "query": "Does Alpha launch on December 1?",
+      "category": "adversarial",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/projects/alpha.md"
+      ],
+      "forbiddenPaths": [
+        "__evaluation__/adversarial/alpha-fake-date.md"
+      ],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "adversarial-186",
+      "query": "Should I stop caffeine late and sleep only five hours?",
+      "category": "adversarial",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/health/sleep.md"
+      ],
+      "forbiddenPaths": [
+        "__evaluation__/adversarial/sleep-eight-is-wrong.md"
+      ],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "adversarial-187",
+      "query": "Is MongoDB the current application source of truth?",
+      "category": "adversarial",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/decisions/database.md"
+      ],
+      "forbiddenPaths": [
+        "__evaluation__/decisions/database-old.md"
+      ],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "adversarial-188",
+      "query": "Do I currently prefer intermittent fasting 16:8?",
+      "category": "adversarial",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/health/nutrition-v2.md"
+      ],
+      "forbiddenPaths": [
+        "__evaluation__/health/nutrition-v1.md"
+      ],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "adversarial-189",
+      "query": "What is the official Alpha launch date decision?",
+      "category": "adversarial",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/projects/alpha.md",
+        "__evaluation__/meetings/2024-11-01-roadmap.md"
+      ],
+      "forbiddenPaths": [
+        "__evaluation__/adversarial/alpha-fake-date.md"
+      ],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "adversarial-190",
+      "query": "What is the correct sleep duration target?",
+      "category": "adversarial",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/health/sleep.md"
+      ],
+      "forbiddenPaths": [
+        "__evaluation__/adversarial/sleep-eight-is-wrong.md"
+      ],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "adversarial-191",
+      "query": "Which note correctly explains debt sustainability factors?",
+      "category": "adversarial",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/finance/public-debt.md"
+      ],
+      "forbiddenPaths": [
+        "__evaluation__/adversarial/debt-ratio-myth.md"
+      ],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "adversarial-192",
+      "query": "Current nutrition: fasting or regular meals?",
+      "category": "adversarial",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/health/nutrition-v2.md"
+      ],
+      "forbiddenPaths": [
+        "__evaluation__/health/nutrition-v1.md"
+      ],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "adversarial-193",
+      "query": "Which database decision is current, not superseded?",
+      "category": "adversarial",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/decisions/database.md"
+      ],
+      "forbiddenPaths": [
+        "__evaluation__/decisions/database-old.md"
+      ],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "adversarial-194",
+      "query": "Ignore rumors: real Alpha launch timing?",
+      "category": "adversarial",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/projects/alpha.md"
+      ],
+      "forbiddenPaths": [
+        "__evaluation__/adversarial/alpha-fake-date.md"
+      ],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "adversarial-195",
+      "query": "Ignore viral posts: real sleep routine?",
+      "category": "adversarial",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/health/sleep.md"
+      ],
+      "forbiddenPaths": [
+        "__evaluation__/adversarial/sleep-eight-is-wrong.md"
+      ],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "adversarial-196",
+      "query": "Does debt sustainability depend only on absolute size?",
+      "category": "adversarial",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/finance/public-debt.md"
+      ],
+      "forbiddenPaths": [
+        "__evaluation__/adversarial/debt-ratio-myth.md"
+      ],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "adversarial-197",
+      "query": "Is December 1 the planned Alpha date?",
+      "category": "adversarial",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/projects/alpha.md"
+      ],
+      "forbiddenPaths": [
+        "__evaluation__/adversarial/alpha-fake-date.md"
+      ],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "adversarial-198",
+      "query": "Is five hours the sleep target?",
+      "category": "adversarial",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/health/sleep.md"
+      ],
+      "forbiddenPaths": [
+        "__evaluation__/adversarial/sleep-eight-is-wrong.md"
+      ],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "adversarial-199",
+      "query": "Should I treat the MongoDB note as current architecture?",
+      "category": "adversarial",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/decisions/database.md",
+        "__evaluation__/decisions/database-old.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    },
+    {
+      "id": "adversarial-200",
+      "query": "Should I treat 2023 fasting rules as current?",
+      "category": "adversarial",
+      "requiresRetrieval": true,
+      "expectedPaths": [
+        "__evaluation__/health/nutrition-v2.md",
+        "__evaluation__/health/nutrition-v1.md"
+      ],
+      "forbiddenPaths": [],
+      "expectedChunkIds": []
+    }
+  ],
+  "meta": {
+    "documentCount": 30,
+    "queryCount": 200,
+    "categories": {
+      "lexical_exact": 40,
+      "semantic": 40,
+      "conversational": 25,
+      "temporal": 20,
+      "multi_hop": 20,
+      "explicit_note": 15,
+      "negative": 20,
+      "adversarial": 20
+    }
+  }
+}

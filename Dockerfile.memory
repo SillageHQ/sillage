@@ -1,0 +1,27 @@
+FROM ghcr.io/astral-sh/uv:0.9.17-python3.12-bookworm-slim
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends curl
+
+WORKDIR /app
+
+ENV UV_COMPILE_BYTECODE=1
+ENV UV_LINK_MODE=copy
+ENV UV_PYTHON=3.12
+
+COPY services/memory/pyproject.toml services/memory/uv.lock ./
+RUN uv sync --locked --no-dev --no-install-project
+
+COPY services/memory ./
+RUN uv sync --locked --no-dev
+
+RUN useradd --create-home --uid 10001 appuser \
+    && chown -R appuser:appuser /app
+
+ENV PATH="/app/.venv/bin:$PATH"
+
+USER appuser
+
+EXPOSE 8000
+
+CMD ["uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8000"]

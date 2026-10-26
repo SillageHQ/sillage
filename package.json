@@ -1,0 +1,25 @@
+{
+  "name": "sillage",
+  "private": true,
+  "version": "1.0.0-beta",
+  "description": "Sillage — the contextual memory layer for Obsidian",
+  "scripts": {
+    "docker:up": "docker compose up -d --wait",
+    "docker:down": "docker compose down",
+    "dev": "concurrently -n memory,api,desktop -c blue,green,magenta \"pnpm memory:dev\" \"pnpm api:dev\" \"pnpm desktop:dev\"",
+    "memory:dev": "cd services/memory && uv run uvicorn api:app --port 8000 --reload",
+    "api:dev": "pnpm --filter @sb/api dev",
+    "desktop:dev": "pnpm --filter @sb/desktop tauri dev",
+    "landing:dev": "pnpm --filter @sb/landing dev",
+    "landing:build": "pnpm --filter @sb/landing build",
+    "db:push": "pnpm --filter @sb/api db:push",
+    "db:studio": "pnpm --filter @sb/api db:studio",
+    "tunnel": "zrok2 share public localhost:3000 -n public:sillage",
+    "docker:build:landing": "docker build -f Dockerfile.landing -t jbholdings/sillage-landing:latest .",
+    "docker:run:landing": "docker run jbholdings/sillage-landing:latest"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  },
+  "license": "Elastic-2.0"
+}
