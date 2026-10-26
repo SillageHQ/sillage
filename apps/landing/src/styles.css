@@ -268,7 +268,8 @@ footer a { text-decoration: none; }
   text-transform: uppercase;
 }
 
-.landing-github-link span { color: var(--blue); font-size: 14px; }
+.landing-github-link svg { width: 17px; height: 17px; fill: currentColor; }
+.landing-github-link .landing-github-external { color: var(--blue); font-size: 14px; }
 .landing-github-link:hover { color: var(--blue); }
 
 .customer-hero {
