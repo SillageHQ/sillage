@@ -12,3 +12,33 @@ allowBuilds:
   esbuild: true
   prisma: true
   sharp: false
+minimumReleaseAgeExclude:
+  - fast-uri@3.1.9
+  - '@better-auth/core@1.7.12'
+  - '@better-auth/drizzle-adapter@1.7.12'
+  - '@better-auth/kysely-adapter@1.7.12'
+  - '@better-auth/memory-adapter@1.7.12'
+  - '@better-auth/mongo-adapter@1.7.12'
+  - '@better-auth/prisma-adapter@1.7.12'
+  - '@better-auth/telemetry@1.7.12'
+  - '@lingui/babel-plugin-extract-messages@6.10.1'
+  - '@lingui/babel-plugin-lingui-macro@6.10.1'
+  - '@lingui/cli@6.10.1'
+  - '@lingui/conf@6.10.1'
+  - '@lingui/core@6.10.1'
+  - '@lingui/format-po@6.10.1'
+  - '@lingui/message-utils@6.10.1'
+  - '@lingui/react@6.10.1'
+  - '@lingui/vite-plugin@6.10.1'
+  - '@tanstack/query-core@5.104.5'
+  - '@tanstack/react-query@5.104.5'
+  - better-auth@1.7.12
+  - better-call@1.4.4
+  - lucide-react@1.61.0
+overrides:
+  '@vitest/mocker@>=2.1.0-beta.7 <4.1.12': ^4.1.12
+  deepmerge-ts@<8.0.0: ^8.0.0
+  shell-quote@<=1.8.4: ^1.9.0
+  shell-quote@>=1.8.4 <1.11.0: ^1.11.0
+  tinypool@<2.1.2: ^2.1.2
+  vitest@>=2.1.0 <4.1.11: ^4.1.11
