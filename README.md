@@ -70,10 +70,10 @@ for retrieval evaluation and synthetic datasets.
 
 ## Deployment and security
 
-See [COOLIFY.md](COOLIFY.md) for the container deployment path and
-[SECURITY_AUDIT.md](SECURITY_AUDIT.md) for deployment security requirements.
-Production needs configured authentication, independent secrets, trusted TLS
-certificates, backups, and a private database/service network.
+The [Coolify Compose configuration](compose.coolify.yml) and
+[environment template](config/example.env) show the deployment setup. Production
+needs configured authentication, independent secrets, trusted TLS certificates,
+backups, and a private database/service network.
 
 Release workflows depend on the repository owner's signing, storage, and
 deployment credentials. Forks must configure their own infrastructure before
