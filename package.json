@@ -15,8 +15,8 @@
     "db:push": "pnpm --filter @sb/api db:push",
     "db:studio": "pnpm --filter @sb/api db:studio",
     "tunnel": "zrok2 share public localhost:3000 -n public:sillage",
-    "docker:build:landing": "docker build -f Dockerfile.landing -t jbholdings/sillage-landing:latest .",
-    "docker:run:landing": "docker run jbholdings/sillage-landing:latest"
+    "docker:build:landing": "docker build -f Dockerfile.landing -t ghcr.io/sillagehq/sillage-landing:latest .",
+    "docker:run:landing": "docker run ghcr.io/sillagehq/sillage-landing:latest"
   },
   "devDependencies": {
     "concurrently": "^9.2.3"
