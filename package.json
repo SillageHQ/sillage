@@ -19,7 +19,7 @@
     "docker:run:landing": "docker run jbholdings/sillage-landing:latest"
   },
   "devDependencies": {
-    "concurrently": "^9.1.0"
+    "concurrently": "^9.2.3"
   },
   "license": "Elastic-2.0"
 }
