@@ -19,6 +19,9 @@ compose.override.yml
 compose.override.yaml
 .claude/
 
+# Markdown notes and planning documents stay local by default
+*.[mM][dD]
+
 # os
 .DS_Store
 *.local
