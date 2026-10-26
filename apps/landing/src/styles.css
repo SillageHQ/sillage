@@ -251,6 +251,27 @@ footer a { text-decoration: none; }
   backdrop-filter: blur(14px);
 }
 
+.landing-topbar-nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 2.5vw, 34px);
+}
+
+.landing-github-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--ink);
+  font: 10px var(--mono);
+  letter-spacing: .08em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.landing-github-link svg { width: 17px; height: 17px; fill: currentColor; }
+.landing-github-link .landing-github-external { color: var(--blue); font-size: 14px; }
+.landing-github-link:hover { color: var(--blue); }
+
 .customer-hero {
   position: relative;
   min-height: calc(100svh - 70px);
@@ -294,6 +315,47 @@ footer a { text-decoration: none; }
   font: 400 clamp(17px, 1.55vw, 23px)/1.5 var(--sans);
   letter-spacing: -.018em;
 }
+
+.hero-availability {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: min(670px, calc(100% - 8vw));
+  margin: 2.6vh 0 0 8vw;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+
+.hero-availability-item {
+  display: flex;
+  min-height: 76px;
+  padding: 13px 16px 13px 0;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.hero-availability-item + .hero-availability-item {
+  padding-left: 18px;
+  border-left: 1px solid var(--rule);
+}
+
+.hero-availability-label {
+  color: #696862;
+  font: 9px var(--mono);
+  letter-spacing: .09em;
+}
+
+.hero-availability-item strong {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font: 500 13px var(--sans);
+}
+
+.hero-availability-source strong span { color: var(--blue); font-size: 16px; }
+.hero-availability-source:hover strong { color: var(--blue); }
+.hero-availability-cloud strong span { color: var(--blue); font: 10px var(--mono); }
 
 .hero-downloads {
   display: grid;
@@ -775,7 +837,7 @@ footer a { text-decoration: none; }
 
 @media (max-width: 1050px) {
   .customer-hero { grid-template-columns: 5vw minmax(0, 1fr) minmax(290px, 33vw) 3vw; }
-  .hero-lede, .hero-downloads, .hero-release-link { margin-left: 3vw; }
+  .hero-lede, .hero-availability, .hero-downloads, .hero-release-link { margin-left: 3vw; }
   .product-story-heading { grid-template-columns: 16% minmax(0, 1fr); }
   .product-story-heading > p:last-child { grid-column: 2; max-width: 540px; margin-top: 2vh; }
   .preview-recall { grid-template-columns: 18% minmax(0, 1fr); }
@@ -794,6 +856,7 @@ footer a { text-decoration: none; }
   .customer-hero h1 { font-size: clamp(60px, 16vw, 98px); line-height: .86; }
   .customer-hero h1 em { white-space: normal; }
   .hero-lede { margin: 4vh 0 0; font-size: 17px; }
+  .hero-availability { width: 100%; margin: 3vh 0 0; }
   .hero-downloads { margin: 3vh 0 0; }
   .hero-release-link { margin-left: 0; }
   .customer-hero-access { grid-column: 2; width: min(480px, 100%); padding: 8vh 0 7vh; border-left: 0; }
@@ -840,8 +903,16 @@ footer a { text-decoration: none; }
 
 @media (max-width: 480px) {
   .landing-topbar .top-link { font-size: 0; }
+  .landing-topbar-nav { gap: 14px; }
+  .landing-github-link { font-size: 9px; }
   .customer-hero { min-height: 930px; }
   .customer-hero h1 { font-size: clamp(48px, 13.2vw, 54px); }
+  .hero-availability { margin-top: 24px; }
+  .hero-availability-item { min-height: 68px; padding-right: 10px; }
+  .hero-availability-item + .hero-availability-item { padding-left: 12px; }
+  .hero-availability-label { font-size: 8px; letter-spacing: .04em; }
+  .hero-availability-item strong { display: block; font-size: 11px; line-height: 1.4; }
+  .hero-availability-cloud strong span { display: block; margin-top: 3px; }
   .hero-downloads { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
   .hero-downloads .download-platform { grid-template-columns: 22px minmax(0, 1fr); min-height: 52px; gap: 8px; padding: 8px 10px; }
   .hero-downloads .download-platform small,
