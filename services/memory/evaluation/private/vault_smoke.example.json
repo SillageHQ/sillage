@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "description": "Copy to vault_smoke.json and fill with real questions. Never commit vault_smoke.json.",
+  "queries": [
+    {
+      "id": "example-launch",
+      "query": "Quand est prévue la sortie du projet X ?",
+      "category": "temporal",
+      "requiresRetrieval": true,
+      "expectedPathContains": [],
+      "expectedKeywords": [],
+      "forbiddenPathContains": [],
+      "notes": "Fill after interactive pass, e.g. expectedPathContains: [\"Projects/X\"]"
+    },
+    {
+      "id": "example-ack",
+      "query": "ok merci",
+      "category": "negative",
+      "requiresRetrieval": false,
+      "expectedPathContains": [],
+      "expectedKeywords": [],
+      "forbiddenPathContains": [],
+      "notes": "Should not need vault context"
+    },
+    {
+      "id": "example-code",
+      "query": "TICKET-OR-CODE-HERE",
+      "category": "lexical_exact",
+      "requiresRetrieval": true,
+      "expectedPathContains": [],
+      "expectedKeywords": [],
+      "forbiddenPathContains": [],
+      "notes": "Exact code / acronym lookup"
+    }
+  ]
+}

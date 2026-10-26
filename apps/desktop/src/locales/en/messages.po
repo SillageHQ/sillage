@@ -1,0 +1,688 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2026-06-21 15:52+0300\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: en\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
+
+#: src/App.tsx
+msgid "{days} days until deletion"
+msgstr "{days} days until deletion"
+
+#: src/App.tsx
+msgid "Absolute path to the folder containing your notes."
+msgstr "Absolute path to the folder containing your notes."
+
+#: src/App.tsx
+msgid "Absolute path to your Obsidian vault"
+msgstr "Absolute path to your Obsidian vault"
+
+#: src/components/magic-menu.tsx
+msgid "Add a preference or constraint…"
+msgstr "Add a preference or constraint…"
+
+#: src/App.tsx
+msgid "Add a web page, video, or audio file to the vault"
+msgstr "Add a web page, video, or audio file to the vault"
+
+#: src/components/magic-menu.tsx
+msgid "Add an instruction for the rewrite."
+msgstr "Add an instruction for the rewrite."
+
+#: src/App.tsx
+msgid "Add files"
+msgstr "Add files"
+
+#: src/App.tsx
+msgid "Add to chat"
+msgstr "Add to chat"
+
+#: src/components/change-diff-modal.tsx
+msgid "After"
+msgstr "After"
+
+#: src/App.tsx
+msgid "All caught up. ✨"
+msgstr "All caught up. ✨"
+
+#: src/components/magic-menu.tsx
+msgid "Analyzing…"
+msgstr "Analyzing…"
+
+#: src/App.tsx
+msgid "Archive"
+msgstr "Archive"
+
+#: src/App.tsx
+msgid "Archive chat"
+msgstr "Archive chat"
+
+#: src/components/chat-search-modal.tsx
+msgid "Archived"
+msgstr "Archived"
+
+#: src/App.tsx
+msgid "Archived on {date}"
+msgstr "Archived on {date}"
+
+#: src/App.tsx
+msgid "Ask a question... (/ for commands, @ to cite a note)"
+msgstr "Ask a question... (/ for commands, @ to cite a note)"
+
+#: src/App.tsx
+msgid "Ask across your notes and uncover connections."
+msgstr "Ask across your notes and uncover connections."
+
+#: src/App.tsx
+msgid "Ask across your notes, uncover connections, or capture something new."
+msgstr "Ask across your notes, uncover connections, or capture something new."
+
+#: src/App.tsx
+msgid "Ask your second brain anything..."
+msgstr "Ask your second brain anything..."
+
+#: src/App.tsx
+msgid "Audio"
+msgstr "Audio"
+
+#: src/App.tsx
+msgid "Auto-delete archived chats"
+msgstr "Auto-delete archived chats"
+
+#: src/App.tsx
+msgid "Back to app"
+msgstr "Back to app"
+
+#: src/components/change-diff-modal.tsx
+msgid "Before"
+msgstr "Before"
+
+#: src/App.tsx
+msgid "Book"
+msgstr "Book"
+
+#: src/App.tsx
+msgid "Can edit your vault"
+msgstr "Can edit your vault"
+
+#: src/App.tsx
+msgid "Capture content"
+msgstr "Capture content"
+
+#: src/App.tsx
+msgid "Change icon"
+msgstr "Change icon"
+
+#: src/components/change-diff-modal.tsx
+msgid "Changes"
+msgstr "Changes"
+
+#: src/components/vault-explorer.tsx
+msgid "Chat with this note"
+msgstr "Chat with this note"
+
+#: src/App.tsx
+msgid "Chats"
+msgstr "Chats"
+
+#: src/components/magic-menu.tsx
+msgid "Choose a vault target."
+msgstr "Choose a vault target."
+
+#: src/components/magic-menu.tsx
+msgid "Clarify the hierarchy without changing the meaning."
+msgstr "Clarify the hierarchy without changing the meaning."
+
+#: src/App.tsx
+#: src/components/chat-search-modal.tsx
+#: src/components/vault-explorer.tsx
+msgid "Close"
+msgstr "Close"
+
+#: src/App.tsx
+msgid "Close (Esc)"
+msgstr "Close (Esc)"
+
+#: src/App.tsx
+msgid "Code"
+msgstr "Code"
+
+#: src/App.tsx
+msgid "Companion"
+msgstr "Companion"
+
+#: src/App.tsx
+msgid "Companion service"
+msgstr "Companion service"
+
+#: src/App.tsx
+msgid "Connect ideas"
+msgstr "Connect ideas"
+
+#: src/App.tsx
+msgid "Conversations"
+msgstr "Conversations"
+
+#: src/App.tsx
+msgid "Creative"
+msgstr "Creative"
+
+#: src/App.tsx
+msgid "Curator"
+msgstr "Curator"
+
+#: src/App.tsx
+msgid "Delete"
+msgstr "Delete"
+
+#: src/App.tsx
+msgid "Deletion delay"
+msgstr "Deletion delay"
+
+#: src/components/magic-menu.tsx
+msgid "Destination folder"
+msgstr "Destination folder"
+
+#: src/App.tsx
+msgid "Empty"
+msgstr "Empty"
+
+#: src/App.tsx
+msgid "English"
+msgstr "English"
+
+#: src/components/magic-menu.tsx
+msgid "Example: make it more concise and editorial…"
+msgstr "Example: make it more concise and editorial…"
+
+#: src/App.tsx
+msgid "Explore my knowledge"
+msgstr "Explore my knowledge"
+
+#: src/App.tsx
+msgid "Explore my notes and show me the most important themes."
+msgstr "Explore my notes and show me the most important themes."
+
+#: src/App.tsx
+msgid "Favorite"
+msgstr "Favorite"
+
+#: src/App.tsx
+msgid "Files must be smaller than 1 MB."
+msgstr "Files must be smaller than 1 MB."
+
+#: src/components/magic-menu.tsx
+msgid "Find a folder…"
+msgstr "Find a folder…"
+
+#: src/components/magic-menu.tsx
+msgid "Find a note…"
+msgstr "Find a note…"
+
+#: src/App.tsx
+msgid "Find relationships and patterns across my second brain"
+msgstr "Find relationships and patterns across my second brain"
+
+#: src/App.tsx
+msgid "Find surprising connections between ideas in my notes."
+msgstr "Find surprising connections between ideas in my notes."
+
+#: src/App.tsx
+#: src/components/magic-menu.tsx
+msgid "Folder"
+msgstr "Folder"
+
+#: src/App.tsx
+msgid "Folder name..."
+msgstr "Folder name..."
+
+#: src/App.tsx
+msgid "Folders"
+msgstr "Folders"
+
+#: src/App.tsx
+msgid "Forgot"
+msgstr "Forgot"
+
+#: src/App.tsx
+msgid "French"
+msgstr "French"
+
+#: src/App.tsx
+msgid "General"
+msgstr "General"
+
+#: src/App.tsx
+msgid "Hide sidebar"
+msgstr "Hide sidebar"
+
+#: src/App.tsx
+msgid "Hide vault sidebar"
+msgstr "Hide vault sidebar"
+
+#: src/App.tsx
+msgid "I remembered"
+msgstr "I remembered"
+
+#: src/App.tsx
+msgid "Idea"
+msgstr "Idea"
+
+#: src/App.tsx
+msgid "Image"
+msgstr "Image"
+
+#: src/components/magic-menu.tsx
+msgid "Improve the writing with a precise instruction."
+msgstr "Improve the writing with a precise instruction."
+
+#: src/App.tsx
+msgid "Language"
+msgstr "Language"
+
+#: src/App.tsx
+msgid "Language used throughout the app."
+msgstr "Language used throughout the app."
+
+#: src/components/vault-explorer.tsx
+msgid "Loading note..."
+msgstr "Loading note..."
+
+#: src/components/vault-explorer.tsx
+msgid "Loading notes..."
+msgstr "Loading notes..."
+
+#: src/App.tsx
+msgid "Loading..."
+msgstr "Loading..."
+
+#: src/App.tsx
+msgid "Local memory"
+msgstr "Local memory"
+
+#: src/App.tsx
+msgid "Local vault folder"
+msgstr "Local vault folder"
+
+#: src/App.tsx
+#: src/components/magic-menu.tsx
+msgid "Magic menu"
+msgstr "Magic menu"
+
+#: src/App.tsx
+msgid "Move to"
+msgstr "Move to"
+
+#: src/components/chat-search-modal.tsx
+msgid "Navigate"
+msgstr "Navigate"
+
+#: src/components/magic-menu.tsx
+msgid "Navigate with arrows · Enter to select"
+msgstr "Navigate with arrows · Enter to select"
+
+#: src/App.tsx
+msgid "New chat"
+msgstr "New chat"
+
+#: src/App.tsx
+msgid "New chat in project"
+msgstr "New chat in project"
+
+#: src/App.tsx
+msgid "New folder"
+msgstr "New folder"
+
+#: src/App.tsx
+msgid "No archived conversations."
+msgstr "No archived conversations."
+
+#: src/App.tsx
+msgid "No chats"
+msgstr "No chats"
+
+#: src/components/chat-search-modal.tsx
+msgid "No conversations found"
+msgstr "No conversations found"
+
+#: src/components/magic-menu.tsx
+msgid "No matching target"
+msgstr "No matching target"
+
+#: src/App.tsx
+msgid "No note changes"
+msgstr "No note changes"
+
+#: src/components/vault-explorer.tsx
+msgid "No notes found"
+msgstr "No notes found"
+
+#: src/App.tsx
+msgid "No project"
+msgstr "No project"
+
+#: src/App.tsx
+msgid "None"
+msgstr "None"
+
+#: src/components/magic-menu.tsx
+msgid "Note"
+msgstr "Note"
+
+#: src/components/magic-menu.tsx
+msgid "Nothing is written before your review."
+msgstr "Nothing is written before your review."
+
+#: src/App.tsx
+msgid "Number of days before deletion."
+msgstr "Number of days before deletion."
+
+#: src/components/chat-search-modal.tsx
+msgid "Open"
+msgstr "Open"
+
+#: src/App.tsx
+msgid "Open account menu"
+msgstr "Open account menu"
+
+#: src/App.tsx
+msgid "Open available update"
+msgstr "Open available update"
+
+#: src/App.tsx
+msgid "Open folder"
+msgstr "Open folder"
+
+#: src/components/vault-explorer.tsx
+msgid "Open in Obsidian"
+msgstr "Open in Obsidian"
+
+#: src/App.tsx
+msgid "Open vault actions from anywhere in Sillage."
+msgstr "Open vault actions from anywhere in Sillage."
+
+#: src/components/magic-menu.tsx
+msgid "Optional direction"
+msgstr "Optional direction"
+
+#: src/components/magic-menu.tsx
+msgid "Organize a folder"
+msgstr "Organize a folder"
+
+#: src/App.tsx
+msgid "Pause sync"
+msgstr "Pause sync"
+
+#: src/App.tsx
+msgid "Permanently remove archived conversations after a delay."
+msgstr "Permanently remove archived conversations after a delay."
+
+#: src/App.tsx
+msgid "Permission mode"
+msgstr "Permission mode"
+
+#: src/App.tsx
+msgid "Personal"
+msgstr "Personal"
+
+#: src/App.tsx
+msgid "Please analyze the attached files."
+msgstr "Please analyze the attached files."
+
+#: src/components/magic-menu.tsx
+msgid "Prepare review"
+msgstr "Prepare review"
+
+#: src/App.tsx
+msgid "Project"
+msgstr "Project"
+
+#: src/App.tsx
+msgid "Project settings"
+msgstr "Project settings"
+
+#: src/App.tsx
+msgid "Read"
+msgstr "Read"
+
+#: src/components/magic-menu.tsx
+msgid "Rearrange notes, preserve links, and review every move."
+msgstr "Rearrange notes, preserve links, and review every move."
+
+#: src/App.tsx
+msgid "Reference a vault note"
+msgstr "Reference a vault note"
+
+#: src/App.tsx
+msgid "Remove attachment"
+msgstr "Remove attachment"
+
+#: src/App.tsx
+msgid "Rename"
+msgstr "Rename"
+
+#: src/App.tsx
+msgid "Research"
+msgstr "Research"
+
+#: src/App.tsx
+msgid "Restart sync"
+msgstr "Restart sync"
+
+#: src/App.tsx
+msgid "Restore"
+msgstr "Restore"
+
+#: src/components/magic-menu.tsx
+msgid "Restructure a note"
+msgstr "Restructure a note"
+
+#: src/App.tsx
+msgid "Resume sync"
+msgstr "Resume sync"
+
+#: src/App.tsx
+msgid "Retry"
+msgstr "Retry"
+
+#: src/App.tsx
+msgid "Review"
+msgstr "Review"
+
+#: src/App.tsx
+msgid "Review magic menu changes"
+msgstr "Review magic menu changes"
+
+#: src/components/magic-menu.tsx
+msgid "Review required"
+msgstr "Review required"
+
+#: src/components/magic-menu.tsx
+msgid "Rewrite a note"
+msgstr "Rewrite a note"
+
+#: src/components/magic-menu.tsx
+msgid "Rewrite instruction"
+msgstr "Rewrite instruction"
+
+#: src/App.tsx
+msgid "Save changes"
+msgstr "Save changes"
+
+#: src/App.tsx
+msgid "Saved ✓"
+msgstr "Saved ✓"
+
+#: src/App.tsx
+msgid "Search across notes and surface the most useful context"
+msgstr "Search across notes and surface the most useful context"
+
+#: src/components/magic-menu.tsx
+msgid "Search actions…"
+msgstr "Search actions…"
+
+#: src/components/chat-search-modal.tsx
+msgid "Search chat titles and messages"
+msgstr "Search chat titles and messages"
+
+#: src/App.tsx
+msgid "Search conversations"
+msgstr "Search conversations"
+
+#: src/components/chat-search-modal.tsx
+msgid "Search conversations..."
+msgstr "Search conversations..."
+
+#: src/components/vault-explorer.tsx
+msgid "Search vault..."
+msgstr "Search vault..."
+
+#: src/App.tsx
+#: src/components/chat-search-modal.tsx
+msgid "Searching..."
+msgstr "Searching..."
+
+#: src/App.tsx
+msgid "Select language"
+msgstr "Select language"
+
+#: src/App.tsx
+msgid "Select vault source"
+msgstr "Select vault source"
+
+#: src/App.tsx
+msgid "Settings"
+msgstr "Settings"
+
+#: src/App.tsx
+msgid "Settings unavailable"
+msgstr "Settings unavailable"
+
+#: src/App.tsx
+msgid "Show less"
+msgstr "Show less"
+
+#: src/App.tsx
+msgid "Show more"
+msgstr "Show more"
+
+#: src/App.tsx
+msgid "Show sidebar"
+msgstr "Show sidebar"
+
+#: src/App.tsx
+msgid "Show vault sidebar"
+msgstr "Show vault sidebar"
+
+#: src/App.tsx
+msgid "Sign out"
+msgstr "Sign out"
+
+#: src/App.tsx
+msgid "Signing out…"
+msgstr "Signing out…"
+
+#: src/components/magic-menu.tsx
+msgid "Structure an idea"
+msgstr "Structure an idea"
+
+#: src/App.tsx
+msgid "Summarize a topic"
+msgstr "Summarize a topic"
+
+#: src/App.tsx
+msgid "Summarize what I know about "
+msgstr "Summarize what I know about "
+
+#: src/App.tsx
+msgid "Sync status"
+msgstr "Sync status"
+
+#. placeholder {0}: props.initialNote.title
+#: src/App.tsx
+msgid "Tell me about this note: {0}"
+msgstr "Tell me about this note: {0}"
+
+#: src/App.tsx
+msgid "The local API is unavailable. Start the development services and try again."
+msgstr "The local API is unavailable. Start the development services and try again."
+
+#: src/components/magic-menu.tsx
+msgid "The vault action could not be prepared."
+msgstr "The vault action could not be prepared."
+
+#: src/components/magic-menu.tsx
+msgid "Turn raw thoughts into a durable Markdown note."
+msgstr "Turn raw thoughts into a durable Markdown note."
+
+#: src/App.tsx
+msgid "Turn scattered knowledge into a concise overview"
+msgstr "Turn scattered knowledge into a concise overview"
+
+#: src/App.tsx
+msgid "Vault"
+msgstr "Vault"
+
+#: src/components/magic-menu.tsx
+msgid "Vault actions"
+msgstr "Vault actions"
+
+#: src/App.tsx
+msgid "Vault path must be an absolute existing folder."
+msgstr "Vault path must be an absolute existing folder."
+
+#: src/App.tsx
+msgid "Vault source"
+msgstr "Vault source"
+
+#: src/App.tsx
+msgid "View changes"
+msgstr "View changes"
+
+#: src/App.tsx
+msgid "Watches your vault and syncs note changes."
+msgstr "Watches your vault and syncs note changes."
+
+#: src/App.tsx
+msgid "What should I review?"
+msgstr "What should I review?"
+
+#: src/App.tsx
+msgid "What should we explore in your second brain?"
+msgstr "What should we explore in your second brain?"
+
+#: src/App.tsx
+#~ msgid "Where Second Brain reads your notes."
+#~ msgstr "Where Second Brain reads your notes."
+
+#: src/App.tsx
+msgid "Where Sillage reads your notes."
+msgstr "Where Sillage reads your notes."
+
+#: src/App.tsx
+msgid "Work"
+msgstr "Work"
+
+#: src/components/magic-menu.tsx
+msgid "Write or paste an idea first."
+msgstr "Write or paste an idea first."
+
+#: src/components/magic-menu.tsx
+msgid "Write or paste the thought you want to keep…"
+msgstr "Write or paste the thought you want to keep…"
+
+#: src/App.tsx
+msgid "You can attach up to 5 files."
+msgstr "You can attach up to 5 files."
+
+#: src/components/magic-menu.tsx
+msgid "Your idea"
+msgstr "Your idea"

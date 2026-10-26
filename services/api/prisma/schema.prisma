@@ -1,0 +1,579 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                    String                 @id @default(uuid())
+  name                  String
+  email                 String
+  emailVerified         Boolean                @default(false)
+  enabled               Boolean                @default(false)
+  billingEnabled        Boolean                @default(false)
+  image                 String?
+  createdAt             DateTime               @default(now())
+  updatedAt             DateTime               @updatedAt
+  sessions              Session[]
+  accounts              Account[]
+  passkeys              Passkey[]
+  memberships           Membership[]
+  deviceCodes           DeviceCode[]
+  desktopAuthorizations DesktopAuthorization[]
+  desktopSessions       DesktopSession[]
+  paddleSubscriptions   PaddleSubscription[]
+
+  @@unique([email])
+}
+
+model PaddleSubscription {
+  id                   String   @id @default(uuid())
+  user                 User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId               String
+  paddleCustomerId     String?
+  paddleSubscriptionId String   @unique
+  priceId              String
+  status               String
+  nextBilledAt         DateTime?
+  canceledAt           DateTime?
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  @@index([userId, status])
+  @@index([paddleCustomerId])
+}
+
+model BetaCode {
+  id                 String    @id @default(uuid())
+  codeHash           String    @unique
+  email              String?
+  waitlistPosition    Int?      @unique
+  expiresAt          DateTime?
+  redeemedAt         DateTime?
+  createdAt          DateTime  @default(now())
+
+  @@index([email])
+  @@index([expiresAt])
+}
+
+model Passkey {
+  id           String    @id
+  name         String?
+  publicKey    String
+  userId       String
+  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  credentialID String
+  counter      Int
+  deviceType   String
+  backedUp     Boolean
+  transports   String?
+  createdAt    DateTime?
+  aaguid       String?
+
+  @@index([userId])
+  @@index([credentialID])
+}
+
+model Session {
+  id        String   @id
+  expiresAt DateTime
+  token     String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  ipAddress String?
+  userAgent String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model Account {
+  id                    String    @id
+  accountId             String
+  providerId            String
+  userId                String
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  @@index([userId])
+}
+
+model Verification {
+  id         String   @id
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([identifier])
+}
+
+model Workspace {
+  id                    String                 @id @default(uuid())
+  name                  String
+  slug                  String                 @unique
+  createdAt             DateTime               @default(now())
+  updatedAt             DateTime               @updatedAt
+  memberships           Membership[]
+  folders               Folder[]
+  conversations         Conversation[]
+  consolidationRuns     ConsolidationRun[]
+  vaultActionRuns       VaultActionRun[]
+  proposals             KnowledgeProposal[]
+  messages              Message[]
+  vaultDrafts           VaultDraft[]
+  vaultDocuments        VaultDocument[]
+  vaultChunks           VaultChunk[]
+  ingestionArtifacts    IngestionArtifact[]
+  noteChanges           NoteChange[]
+  settings              Settings?
+  captureJobs           CaptureJob[]
+  noteIngestionJobs     NoteIngestionJob[]
+  localModelTasks       LocalModelTask[]
+  deviceCodes           DeviceCode[]
+  desktopAuthorizations DesktopAuthorization[]
+  desktopSessions       DesktopSession[]
+}
+
+model DeviceCode {
+  id           String     @id @default(uuid())
+  codeHash     String     @unique
+  verifierHash String?
+  deviceName   String     @default("Sillage desktop")
+  user         User?      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId       String?
+  workspace    Workspace? @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  workspaceId  String?
+  expiresAt    DateTime
+  claimedAt    DateTime?
+  consumedAt   DateTime?
+  createdAt    DateTime   @default(now())
+
+  @@index([userId, expiresAt])
+  @@index([workspaceId, expiresAt])
+}
+
+model DesktopAuthorization {
+  id                    String     @id @default(uuid())
+  requestTokenHash      String     @unique
+  authorizationCodeHash String?    @unique
+  codeChallenge         String
+  state                 String
+  redirectUri           String
+  deviceName            String     @default("Sillage desktop")
+  user                  User?      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId                String?
+  workspace             Workspace? @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  workspaceId           String?
+  expiresAt             DateTime
+  authorizedAt          DateTime?
+  consumedAt            DateTime?
+  createdAt             DateTime   @default(now())
+
+  @@index([userId, expiresAt])
+  @@index([workspaceId, expiresAt])
+}
+
+model DesktopSession {
+  id          String    @id @default(uuid())
+  tokenHash   String    @unique
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      String
+  workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  workspaceId String
+  deviceName  String    @default("Sillage desktop")
+  expiresAt   DateTime
+  lastUsedAt  DateTime  @default(now())
+  revokedAt   DateTime?
+  createdAt   DateTime  @default(now())
+
+  @@index([userId, revokedAt])
+  @@index([workspaceId, revokedAt])
+}
+
+model Membership {
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      String
+  workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  workspaceId String
+  role        String    @default("owner")
+  createdAt   DateTime  @default(now())
+
+  @@id([userId, workspaceId])
+  @@index([workspaceId])
+}
+
+model Folder {
+  id            String         @id @default(uuid())
+  tenantId      String         @default(dbgenerated("current_setting('app.tenant_id', true)"))
+  workspace     Workspace      @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  name          String
+  icon          String         @default("folder")
+  createdAt     DateTime       @default(now())
+  conversations Conversation[]
+
+  @@unique([tenantId, id])
+  @@index([tenantId])
+}
+
+model Conversation {
+  id                        String             @id @default(uuid())
+  tenantId                  String             @default(dbgenerated("current_setting('app.tenant_id', true)"))
+  workspace                 Workspace          @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  title                     String
+  mode                      String             @default("read")
+  folderId                  String?
+  folder                    Folder?            @relation(fields: [tenantId, folderId], references: [tenantId, id], onDelete: Restrict)
+  archivedAt                DateTime? // null = active; set = sitting in the archive
+  createdAt                 DateTime           @default(now())
+  updatedAt                 DateTime           @updatedAt
+  messages                  Message[]
+  captureJobs               CaptureJob[]
+  noteChanges               NoteChange[]
+  consolidationRuns         ConsolidationRun[]
+  lastConsolidatedMessageId String?
+  consolidatedAt            DateTime?
+  consolidationStatus       String             @default("active")
+  claudeSessionId           String?
+
+  @@unique([tenantId, id])
+  @@index([tenantId, folderId])
+  @@index([tenantId, archivedAt])
+}
+
+model ConsolidationRun {
+  id               String              @id @default(uuid())
+  tenantId         String              @default(dbgenerated("current_setting('app.tenant_id', true)"))
+  workspace        Workspace           @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  conversation     Conversation        @relation(fields: [tenantId, conversationId], references: [tenantId, id], onDelete: Cascade)
+  conversationId   String
+  fromMessageId    String?
+  throughMessageId String
+  status           String              @default("generating")
+  summary          String              @default("") @db.Text
+  knowledgeDelta   Json?
+  createdAt        DateTime            @default(now())
+  resolvedAt       DateTime?
+  proposals        KnowledgeProposal[]
+
+  @@unique([tenantId, id])
+  @@index([tenantId, conversationId, createdAt])
+  @@index([tenantId, status])
+}
+
+model VaultActionRun {
+  id                String              @id @default(uuid())
+  tenantId          String              @default(dbgenerated("current_setting('app.tenant_id', true)"))
+  workspace         Workspace           @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  action            String
+  targetPath        String?
+  instruction       String              @default("") @db.Text
+  inputText         String              @default("") @db.Text
+  destinationFolder String?
+  status            String              @default("generating")
+  summary           String              @default("") @db.Text
+  errorCode         String?
+  errorDetail       String?             @db.Text
+  createdAt         DateTime            @default(now())
+  resolvedAt        DateTime?
+  proposals         KnowledgeProposal[]
+  noteChanges       NoteChange[]
+
+  @@unique([tenantId, id])
+  @@index([tenantId, createdAt])
+  @@index([tenantId, status])
+}
+
+model KnowledgeProposal {
+  id               String            @id @default(uuid())
+  tenantId         String            @default(dbgenerated("current_setting('app.tenant_id', true)"))
+  workspace        Workspace         @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  consolidation    ConsolidationRun? @relation(fields: [tenantId, consolidationId], references: [tenantId, id], onDelete: Cascade)
+  consolidationId  String?
+  vaultActionRun   VaultActionRun?   @relation(fields: [tenantId, vaultActionRunId], references: [tenantId, id], onDelete: Cascade)
+  vaultActionRunId String?
+  kind             String
+  targetPath       String
+  sourcePaths      Json?
+  beforeHash       String?
+  beforeContent    String            @default("") @db.Text
+  afterContent     String            @default("") @db.Text
+  rationale        String            @db.Text
+  confidence       String
+  risk             String
+  decision         String            @default("pending")
+  applyStatus      String            @default("pending")
+  sources          Json
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+
+  @@unique([tenantId, id])
+  @@index([tenantId, consolidationId])
+  @@index([tenantId, vaultActionRunId])
+  @@index([tenantId, decision, applyStatus])
+}
+
+model Message {
+  id             String       @id @default(uuid())
+  tenantId       String       @default(dbgenerated("current_setting('app.tenant_id', true)"))
+  workspace      Workspace    @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  conversation   Conversation @relation(fields: [tenantId, conversationId], references: [tenantId, id], onDelete: Cascade)
+  conversationId String
+  role           String // "user" | "brain"
+  text           String       @db.Text
+  facts          Json?
+  sources        Json?
+  actions        Json?
+  createdAt      DateTime     @default(now())
+  noteChanges    NoteChange[]
+  vaultDrafts    VaultDraft[]
+
+  @@unique([tenantId, id])
+  @@index([tenantId, conversationId])
+}
+
+model VaultDraft {
+  id             String    @id @default(uuid())
+  tenantId       String    @default(dbgenerated("current_setting('app.tenant_id', true)"))
+  workspace      Workspace @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  message        Message   @relation(fields: [tenantId, messageId], references: [tenantId, id], onDelete: Cascade)
+  messageId      String
+  conversationId String
+  title          String
+  targetPath     String
+  content        String    @db.Text
+  rationale      String    @db.Text
+  sources        Json
+  beforeHash     String?
+  status         String    @default("draft") // draft | applying | applied_pending_sync | synced | failed | stale
+  appliedAt      DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  @@unique([tenantId, id])
+  @@index([tenantId, messageId])
+  @@index([tenantId, conversationId])
+  @@index([tenantId, status])
+}
+
+model VaultDocument {
+  id             String
+  tenantId       String       @default(dbgenerated("current_setting('app.tenant_id', true)"))
+  workspace      Workspace    @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  path           String
+  title          String
+  contentHash    String
+  embeddingModel String?
+  metadata       Json?
+  updatedAt      DateTime     @updatedAt
+  chunks         VaultChunk[]
+
+  @@id([tenantId, id])
+  @@unique([tenantId, path])
+  @@index([tenantId, contentHash])
+}
+
+model VaultChunk {
+  id          String
+  tenantId    String                      @default(dbgenerated("current_setting('app.tenant_id', true)"))
+  workspace   Workspace                   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  documentId  String
+  headingPath String                      @default("")
+  startLine   Int
+  endLine     Int
+  text        String                      @db.Text
+  contentHash String
+  embedding   Unsupported("vector(1024)")
+  document    VaultDocument               @relation(fields: [tenantId, documentId], references: [tenantId, id], onDelete: Cascade)
+
+  @@id([tenantId, id])
+  @@index([tenantId, documentId])
+  @@index([tenantId, contentHash])
+}
+
+model IngestionArtifact {
+  id                String
+  tenantId          String    @default(dbgenerated("current_setting('app.tenant_id', true)"))
+  workspace         Workspace @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  path              String
+  contentHash       String
+  pipelineSignature String
+  provider          String
+  status            String    @default("received")
+  payload           Json
+  error             Json?
+  appliedAt         DateTime?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  @@id([tenantId, id])
+  @@unique([tenantId, path, contentHash, pipelineSignature])
+  @@index([tenantId, status])
+  @@index([tenantId, contentHash])
+}
+
+model NoteChange {
+  id               String          @id @default(uuid())
+  tenantId         String          @default(dbgenerated("current_setting('app.tenant_id', true)"))
+  workspace        Workspace       @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  conversation     Conversation?   @relation(fields: [tenantId, conversationId], references: [tenantId, id], onDelete: Cascade)
+  conversationId   String?
+  vaultActionRun   VaultActionRun? @relation(fields: [tenantId, vaultActionRunId], references: [tenantId, id], onDelete: Cascade)
+  vaultActionRunId String?
+  message          Message?        @relation(fields: [tenantId, messageId], references: [tenantId, id], onDelete: Restrict)
+  messageId        String?
+  kind             String
+  noteTitle        String
+  notePath         String
+  beforeContent    String          @default("") @db.Text
+  afterContent     String          @default("") @db.Text
+  addedLines       Int             @default(0)
+  removedLines     Int             @default(0)
+  createdAt        DateTime        @default(now())
+
+  @@unique([tenantId, id])
+  @@index([tenantId, conversationId])
+  @@index([tenantId, vaultActionRunId])
+  @@index([tenantId, messageId])
+  @@index([tenantId, createdAt])
+}
+
+model Settings {
+  id                        Int       @id @default(autoincrement())
+  tenantId                  String    @unique @default(dbgenerated("current_setting('app.tenant_id', true)"))
+  workspace                 Workspace @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  archiveAutoPurge          Boolean   @default(false)
+  archivePurgeDays          Int       @default(30)
+  vaultPath                 String    @default("")
+  vaultSourceType           String    @default("manual")
+  vaultRootPath             String    @default("")
+  vaultSourceLabel          String    @default("")
+  syncStatus                String    @default("unknown")
+  lastSyncCheckAt           DateTime?
+  locale                    String    @default("en")
+  inboxFolder               String    @default("1. INBOX")
+  consolidationTrigger      String    @default("off")
+  onboardingStep            Int       @default(0)
+  onboardingCompletedAt     DateTime?
+  theme                     String    @default("dark")
+  accentColor               String    @default("#6F8CFF")
+  defaultModel              String    @default("google/gemini-2.5-flash")
+  claudeModel               String    @default("default")
+  claudeIngestionModel      String    @default("default")
+  claudeEmbeddingModel      String    @default("multilingual-e5-small")
+  ingestionModel            String    @default("google/gemini-2.5-flash")
+  ingestionProvider         String    @default("openrouter")
+  embeddingModel            String    @default("openai/text-embedding-3-small")
+  memoryPresetLevel         Int       @default(2)
+  rerankModel               String    @default("cohere/rerank-v3.5")
+  openRouterApiKeyEncrypted String?   @db.Text
+}
+
+model CaptureJob {
+  id                String        @id @default(uuid())
+  tenantId          String        @default(dbgenerated("current_setting('app.tenant_id', true)"))
+  workspace         Workspace     @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  status            String        @default("queued")
+  sourceUrl         String        @db.Text
+  sourceType        String        @default("unknown_url")
+  instruction       String        @default("") @db.Text
+  summaryDegree     Int           @default(3)
+  destinationFolder String        @default("1. INBOX")
+  title             String?
+  notePath          String?
+  answer            String?       @db.Text
+  facts             Json?
+  error             String?       @db.Text
+  conversation      Conversation? @relation(fields: [tenantId, conversationId], references: [tenantId, id], onDelete: Restrict)
+  conversationId    String?
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
+
+  @@unique([tenantId, id])
+  @@index([tenantId, conversationId])
+  @@index([tenantId, status])
+  @@index([tenantId, createdAt])
+}
+
+model NoteIngestionJob {
+  id         String    @id @default(uuid())
+  tenantId   String    @default(dbgenerated("current_setting('app.tenant_id', true)"))
+  workspace  Workspace @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  status     String    @default("queued")
+  requestKey String?
+  note       Json
+  result     Json?
+  error      Json?
+  attempts   Int       @default(0)
+  startedAt  DateTime?
+  finishedAt DateTime?
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+
+  @@unique([tenantId, id])
+  @@unique([tenantId, requestKey])
+  @@index([tenantId, status])
+  @@index([tenantId, createdAt])
+}
+
+model LocalModelTask {
+  id             String    @id @default(uuid())
+  tenantId       String    @default(dbgenerated("current_setting('app.tenant_id', true)"))
+  workspace      Workspace @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  kind           String
+  payload        Json
+  status         String    @default("queued")
+  result         Json?
+  error          String?   @db.Text
+  leaseId        String?
+  leaseExpiresAt DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  @@unique([tenantId, id])
+  @@index([tenantId, status, createdAt])
+  @@index([tenantId, leaseExpiresAt])
+}
+
+model AppRelease {
+  id          String               @id @default(uuid())
+  version     String               @unique
+  channel     String               @default("stable")
+  publishedAt DateTime             @default(now())
+  createdAt   DateTime             @default(now())
+  updatedAt   DateTime             @updatedAt
+  artifacts   AppReleaseArtifact[]
+
+  @@index([channel, publishedAt])
+}
+
+model AppReleaseArtifact {
+  id        String     @id @default(uuid())
+  release   AppRelease @relation(fields: [releaseId], references: [id], onDelete: Cascade)
+  releaseId String
+  platform  String
+  arch      String
+  format    String
+  fileName  String
+  objectKey String
+  sha256    String     @db.Char(64)
+  size      Int
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  @@unique([releaseId, platform, arch, format])
+  @@index([platform, arch])
+}

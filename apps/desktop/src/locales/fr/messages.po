@@ -1,0 +1,688 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2026-06-21 15:52+0300\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: @lingui/cli\n"
+"Language: fr\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
+
+#: src/App.tsx
+msgid "{days} days until deletion"
+msgstr "Supprimée dans {days} j"
+
+#: src/App.tsx
+msgid "Absolute path to the folder containing your notes."
+msgstr "Chemin absolu du dossier contenant vos notes."
+
+#: src/App.tsx
+msgid "Absolute path to your Obsidian vault"
+msgstr "Chemin absolu de votre coffre Obsidian"
+
+#: src/components/magic-menu.tsx
+msgid "Add a preference or constraint…"
+msgstr "Ajouter une préférence ou une contrainte…"
+
+#: src/App.tsx
+msgid "Add a web page, video, or audio file to the vault"
+msgstr "Ajouter une page web, une vidéo ou un fichier audio au coffre"
+
+#: src/components/magic-menu.tsx
+msgid "Add an instruction for the rewrite."
+msgstr "Ajoutez une consigne de réécriture."
+
+#: src/App.tsx
+msgid "Add files"
+msgstr "Ajouter des fichiers"
+
+#: src/App.tsx
+msgid "Add to chat"
+msgstr "Ajouter au chat"
+
+#: src/components/change-diff-modal.tsx
+msgid "After"
+msgstr "Après"
+
+#: src/App.tsx
+msgid "All caught up. ✨"
+msgstr "Tout est à jour. ✨"
+
+#: src/components/magic-menu.tsx
+msgid "Analyzing…"
+msgstr "Analyse…"
+
+#: src/App.tsx
+msgid "Archive"
+msgstr "Archives"
+
+#: src/App.tsx
+msgid "Archive chat"
+msgstr "Archiver"
+
+#: src/components/chat-search-modal.tsx
+msgid "Archived"
+msgstr "Archivé"
+
+#: src/App.tsx
+msgid "Archived on {date}"
+msgstr "Archivé le {date}"
+
+#: src/App.tsx
+msgid "Ask a question... (/ for commands, @ to cite a note)"
+msgstr "Pose une question... (/ pour les commandes, @ pour citer une note)"
+
+#: src/App.tsx
+msgid "Ask across your notes and uncover connections."
+msgstr "Interrogez vos notes et découvrez des liens."
+
+#: src/App.tsx
+msgid "Ask across your notes, uncover connections, or capture something new."
+msgstr "Interrogez vos notes, découvrez des liens ou capturez un nouveau contenu."
+
+#: src/App.tsx
+msgid "Ask your second brain anything..."
+msgstr "Demandez ce que vous voulez à votre second cerveau…"
+
+#: src/App.tsx
+msgid "Audio"
+msgstr "Audio"
+
+#: src/App.tsx
+msgid "Auto-delete archived chats"
+msgstr "Supprimer automatiquement les conversations archivées"
+
+#: src/App.tsx
+msgid "Back to app"
+msgstr "Retour à l’application"
+
+#: src/components/change-diff-modal.tsx
+msgid "Before"
+msgstr "Avant"
+
+#: src/App.tsx
+msgid "Book"
+msgstr "Livre"
+
+#: src/App.tsx
+msgid "Can edit your vault"
+msgstr "Peut modifier votre coffre"
+
+#: src/App.tsx
+msgid "Capture content"
+msgstr "Capturer du contenu"
+
+#: src/App.tsx
+msgid "Change icon"
+msgstr "Changer l'icône"
+
+#: src/components/change-diff-modal.tsx
+msgid "Changes"
+msgstr "Modifications"
+
+#: src/components/vault-explorer.tsx
+msgid "Chat with this note"
+msgstr "Discuter avec cette note"
+
+#: src/App.tsx
+msgid "Chats"
+msgstr "Conversations"
+
+#: src/components/magic-menu.tsx
+msgid "Choose a vault target."
+msgstr "Choisissez une cible dans le vault."
+
+#: src/components/magic-menu.tsx
+msgid "Clarify the hierarchy without changing the meaning."
+msgstr "Clarifier la hiérarchie sans changer le sens."
+
+#: src/App.tsx
+#: src/components/chat-search-modal.tsx
+#: src/components/vault-explorer.tsx
+msgid "Close"
+msgstr "Fermer"
+
+#: src/App.tsx
+msgid "Close (Esc)"
+msgstr "Fermer (Échap)"
+
+#: src/App.tsx
+msgid "Code"
+msgstr "Code"
+
+#: src/App.tsx
+msgid "Companion"
+msgstr "Compagnon"
+
+#: src/App.tsx
+msgid "Companion service"
+msgstr "Service compagnon"
+
+#: src/App.tsx
+msgid "Connect ideas"
+msgstr "Relier des idées"
+
+#: src/App.tsx
+msgid "Conversations"
+msgstr "Conversations"
+
+#: src/App.tsx
+msgid "Creative"
+msgstr "Créatif"
+
+#: src/App.tsx
+msgid "Curator"
+msgstr "Curateur"
+
+#: src/App.tsx
+msgid "Delete"
+msgstr "Supprimer"
+
+#: src/App.tsx
+msgid "Deletion delay"
+msgstr "Délai avant suppression"
+
+#: src/components/magic-menu.tsx
+msgid "Destination folder"
+msgstr "Dossier de destination"
+
+#: src/App.tsx
+msgid "Empty"
+msgstr "Vide"
+
+#: src/App.tsx
+msgid "English"
+msgstr "Anglais"
+
+#: src/components/magic-menu.tsx
+msgid "Example: make it more concise and editorial…"
+msgstr "Exemple : rendre le texte plus concis et éditorial…"
+
+#: src/App.tsx
+msgid "Explore my knowledge"
+msgstr "Explorer mes connaissances"
+
+#: src/App.tsx
+msgid "Explore my notes and show me the most important themes."
+msgstr "Explore mes notes et montre-moi les thèmes les plus importants."
+
+#: src/App.tsx
+msgid "Favorite"
+msgstr "Favori"
+
+#: src/App.tsx
+msgid "Files must be smaller than 1 MB."
+msgstr "Les fichiers doivent faire moins de 1 Mo."
+
+#: src/components/magic-menu.tsx
+msgid "Find a folder…"
+msgstr "Rechercher un dossier…"
+
+#: src/components/magic-menu.tsx
+msgid "Find a note…"
+msgstr "Rechercher une note…"
+
+#: src/App.tsx
+msgid "Find relationships and patterns across my second brain"
+msgstr "Trouver des relations et des tendances dans mon second cerveau"
+
+#: src/App.tsx
+msgid "Find surprising connections between ideas in my notes."
+msgstr "Trouve des liens surprenants entre les idées de mes notes."
+
+#: src/App.tsx
+#: src/components/magic-menu.tsx
+msgid "Folder"
+msgstr "Dossier"
+
+#: src/App.tsx
+msgid "Folder name..."
+msgstr "Nom du dossier..."
+
+#: src/App.tsx
+msgid "Folders"
+msgstr "Dossiers"
+
+#: src/App.tsx
+msgid "Forgot"
+msgstr "Oublié"
+
+#: src/App.tsx
+msgid "French"
+msgstr "Français"
+
+#: src/App.tsx
+msgid "General"
+msgstr "Général"
+
+#: src/App.tsx
+msgid "Hide sidebar"
+msgstr "Masquer la barre latérale"
+
+#: src/App.tsx
+msgid "Hide vault sidebar"
+msgstr "Masquer la barre latérale du vault"
+
+#: src/App.tsx
+msgid "I remembered"
+msgstr "Je m'en souvenais"
+
+#: src/App.tsx
+msgid "Idea"
+msgstr "Idée"
+
+#: src/App.tsx
+msgid "Image"
+msgstr "Image"
+
+#: src/components/magic-menu.tsx
+msgid "Improve the writing with a precise instruction."
+msgstr "Améliorer le texte avec une consigne précise."
+
+#: src/App.tsx
+msgid "Language"
+msgstr "Langue"
+
+#: src/App.tsx
+msgid "Language used throughout the app."
+msgstr "Langue utilisée dans l’ensemble de l’application."
+
+#: src/components/vault-explorer.tsx
+msgid "Loading note..."
+msgstr "Chargement de la note…"
+
+#: src/components/vault-explorer.tsx
+msgid "Loading notes..."
+msgstr "Chargement des notes…"
+
+#: src/App.tsx
+msgid "Loading..."
+msgstr "Chargement..."
+
+#: src/App.tsx
+msgid "Local memory"
+msgstr "Mémoire locale"
+
+#: src/App.tsx
+msgid "Local vault folder"
+msgstr "Dossier local du coffre"
+
+#: src/App.tsx
+#: src/components/magic-menu.tsx
+msgid "Magic menu"
+msgstr "Menu magique"
+
+#: src/App.tsx
+msgid "Move to"
+msgstr "Déplacer vers"
+
+#: src/components/chat-search-modal.tsx
+msgid "Navigate"
+msgstr "Naviguer"
+
+#: src/components/magic-menu.tsx
+msgid "Navigate with arrows · Enter to select"
+msgstr "Naviguer avec les flèches · Entrée pour sélectionner"
+
+#: src/App.tsx
+msgid "New chat"
+msgstr "Nouveau chat"
+
+#: src/App.tsx
+msgid "New chat in project"
+msgstr "Nouveau chat dans le projet"
+
+#: src/App.tsx
+msgid "New folder"
+msgstr "Nouveau dossier"
+
+#: src/App.tsx
+msgid "No archived conversations."
+msgstr "Aucune conversation archivée."
+
+#: src/App.tsx
+msgid "No chats"
+msgstr "Aucune conversation"
+
+#: src/components/chat-search-modal.tsx
+msgid "No conversations found"
+msgstr "Aucune conversation trouvée"
+
+#: src/components/magic-menu.tsx
+msgid "No matching target"
+msgstr "Aucune cible correspondante"
+
+#: src/App.tsx
+msgid "No note changes"
+msgstr "Aucune modification de note"
+
+#: src/components/vault-explorer.tsx
+msgid "No notes found"
+msgstr "Aucune note trouvée"
+
+#: src/App.tsx
+msgid "No project"
+msgstr "Aucun projet"
+
+#: src/App.tsx
+msgid "None"
+msgstr "Aucun"
+
+#: src/components/magic-menu.tsx
+msgid "Note"
+msgstr "Note"
+
+#: src/components/magic-menu.tsx
+msgid "Nothing is written before your review."
+msgstr "Rien n’est écrit avant votre validation."
+
+#: src/App.tsx
+msgid "Number of days before deletion."
+msgstr "Nombre de jours avant la suppression."
+
+#: src/components/chat-search-modal.tsx
+msgid "Open"
+msgstr "Ouvrir"
+
+#: src/App.tsx
+msgid "Open account menu"
+msgstr "Ouvrir le menu du compte"
+
+#: src/App.tsx
+msgid "Open available update"
+msgstr "Ouvrir la mise à jour disponible"
+
+#: src/App.tsx
+msgid "Open folder"
+msgstr "Dossier ouvert"
+
+#: src/components/vault-explorer.tsx
+msgid "Open in Obsidian"
+msgstr "Ouvrir dans Obsidian"
+
+#: src/App.tsx
+msgid "Open vault actions from anywhere in Sillage."
+msgstr "Ouvrir les actions du vault partout dans Sillage."
+
+#: src/components/magic-menu.tsx
+msgid "Optional direction"
+msgstr "Consigne facultative"
+
+#: src/components/magic-menu.tsx
+msgid "Organize a folder"
+msgstr "Réorganiser un dossier"
+
+#: src/App.tsx
+msgid "Pause sync"
+msgstr "Mettre en pause la synchronisation"
+
+#: src/App.tsx
+msgid "Permanently remove archived conversations after a delay."
+msgstr "Supprimer définitivement les conversations archivées après un certain délai."
+
+#: src/App.tsx
+msgid "Permission mode"
+msgstr "Mode d’autorisation"
+
+#: src/App.tsx
+msgid "Personal"
+msgstr "Personnel"
+
+#: src/App.tsx
+msgid "Please analyze the attached files."
+msgstr "Analyse les fichiers joints."
+
+#: src/components/magic-menu.tsx
+msgid "Prepare review"
+msgstr "Préparer la revue"
+
+#: src/App.tsx
+msgid "Project"
+msgstr "Projet"
+
+#: src/App.tsx
+msgid "Project settings"
+msgstr "Paramètres du projet"
+
+#: src/App.tsx
+msgid "Read"
+msgstr "Lecture"
+
+#: src/components/magic-menu.tsx
+msgid "Rearrange notes, preserve links, and review every move."
+msgstr "Réorganiser les notes, préserver les liens et valider chaque déplacement."
+
+#: src/App.tsx
+msgid "Reference a vault note"
+msgstr "Référencer une note du vault"
+
+#: src/App.tsx
+msgid "Remove attachment"
+msgstr "Retirer la pièce jointe"
+
+#: src/App.tsx
+msgid "Rename"
+msgstr "Renommer"
+
+#: src/App.tsx
+msgid "Research"
+msgstr "Recherche"
+
+#: src/App.tsx
+msgid "Restart sync"
+msgstr "Redémarrer la synchronisation"
+
+#: src/App.tsx
+msgid "Restore"
+msgstr "Restaurer"
+
+#: src/components/magic-menu.tsx
+msgid "Restructure a note"
+msgstr "Restructurer une note"
+
+#: src/App.tsx
+msgid "Resume sync"
+msgstr "Reprendre la synchronisation"
+
+#: src/App.tsx
+msgid "Retry"
+msgstr "Réessayer"
+
+#: src/App.tsx
+msgid "Review"
+msgstr "Révision"
+
+#: src/App.tsx
+msgid "Review magic menu changes"
+msgstr "Valider les changements du menu magique"
+
+#: src/components/magic-menu.tsx
+msgid "Review required"
+msgstr "Validation requise"
+
+#: src/components/magic-menu.tsx
+msgid "Rewrite a note"
+msgstr "Réécrire une note"
+
+#: src/components/magic-menu.tsx
+msgid "Rewrite instruction"
+msgstr "Consigne de réécriture"
+
+#: src/App.tsx
+msgid "Save changes"
+msgstr "Enregistrer les modifications"
+
+#: src/App.tsx
+msgid "Saved ✓"
+msgstr "Enregistré ✓"
+
+#: src/App.tsx
+msgid "Search across notes and surface the most useful context"
+msgstr "Parcourir les notes et faire ressortir le contexte le plus utile"
+
+#: src/components/magic-menu.tsx
+msgid "Search actions…"
+msgstr "Rechercher une action…"
+
+#: src/components/chat-search-modal.tsx
+msgid "Search chat titles and messages"
+msgstr "Rechercher dans les titres et les messages"
+
+#: src/App.tsx
+msgid "Search conversations"
+msgstr "Rechercher des conversations"
+
+#: src/components/chat-search-modal.tsx
+msgid "Search conversations..."
+msgstr "Rechercher des conversations…"
+
+#: src/components/vault-explorer.tsx
+msgid "Search vault..."
+msgstr "Rechercher dans le coffre…"
+
+#: src/App.tsx
+#: src/components/chat-search-modal.tsx
+msgid "Searching..."
+msgstr "Recherche..."
+
+#: src/App.tsx
+msgid "Select language"
+msgstr "Choisir la langue"
+
+#: src/App.tsx
+msgid "Select vault source"
+msgstr "Sélectionner la source du coffre"
+
+#: src/App.tsx
+msgid "Settings"
+msgstr "Paramètres"
+
+#: src/App.tsx
+msgid "Settings unavailable"
+msgstr "Réglages indisponibles"
+
+#: src/App.tsx
+msgid "Show less"
+msgstr "Afficher moins"
+
+#: src/App.tsx
+msgid "Show more"
+msgstr "Afficher plus"
+
+#: src/App.tsx
+msgid "Show sidebar"
+msgstr "Afficher la barre latérale"
+
+#: src/App.tsx
+msgid "Show vault sidebar"
+msgstr "Afficher la barre latérale du vault"
+
+#: src/App.tsx
+msgid "Sign out"
+msgstr "Fermer la session"
+
+#: src/App.tsx
+msgid "Signing out…"
+msgstr "Déconnexion…"
+
+#: src/components/magic-menu.tsx
+msgid "Structure an idea"
+msgstr "Structurer une idée"
+
+#: src/App.tsx
+msgid "Summarize a topic"
+msgstr "Résumer un sujet"
+
+#: src/App.tsx
+msgid "Summarize what I know about "
+msgstr "Résume ce que je sais sur "
+
+#: src/App.tsx
+msgid "Sync status"
+msgstr "État de la synchronisation"
+
+#. placeholder {0}: props.initialNote.title
+#: src/App.tsx
+msgid "Tell me about this note: {0}"
+msgstr "Parle-moi de cette note : {0}"
+
+#: src/App.tsx
+msgid "The local API is unavailable. Start the development services and try again."
+msgstr "L’API locale est indisponible. Démarrez les services de développement et réessayez."
+
+#: src/components/magic-menu.tsx
+msgid "The vault action could not be prepared."
+msgstr "L’action sur le vault n’a pas pu être préparée."
+
+#: src/components/magic-menu.tsx
+msgid "Turn raw thoughts into a durable Markdown note."
+msgstr "Transformer des pensées brutes en note Markdown durable."
+
+#: src/App.tsx
+msgid "Turn scattered knowledge into a concise overview"
+msgstr "Transformer des connaissances éparses en une synthèse concise"
+
+#: src/App.tsx
+msgid "Vault"
+msgstr "Coffre"
+
+#: src/components/magic-menu.tsx
+msgid "Vault actions"
+msgstr "Actions du vault"
+
+#: src/App.tsx
+msgid "Vault path must be an absolute existing folder."
+msgstr "Le chemin du coffre doit être un dossier absolu existant."
+
+#: src/App.tsx
+msgid "Vault source"
+msgstr "Source du coffre"
+
+#: src/App.tsx
+msgid "View changes"
+msgstr "Voir les modifications"
+
+#: src/App.tsx
+msgid "Watches your vault and syncs note changes."
+msgstr "Surveille votre coffre et synchronise les modifications de notes."
+
+#: src/App.tsx
+msgid "What should I review?"
+msgstr "Que dois-je réviser ?"
+
+#: src/App.tsx
+msgid "What should we explore in your second brain?"
+msgstr "Qu’allons-nous explorer dans votre second cerveau ?"
+
+#: src/App.tsx
+#~ msgid "Where Second Brain reads your notes."
+#~ msgstr "Emplacement où Second Brain lit vos notes."
+
+#: src/App.tsx
+msgid "Where Sillage reads your notes."
+msgstr "Emplacement où Sillage lit vos notes."
+
+#: src/App.tsx
+msgid "Work"
+msgstr "Travail"
+
+#: src/components/magic-menu.tsx
+msgid "Write or paste an idea first."
+msgstr "Écrivez ou collez d’abord une idée."
+
+#: src/components/magic-menu.tsx
+msgid "Write or paste the thought you want to keep…"
+msgstr "Écrivez ou collez la pensée que vous souhaitez conserver…"
+
+#: src/App.tsx
+msgid "You can attach up to 5 files."
+msgstr "Vous pouvez joindre jusqu’à 5 fichiers."
+
+#: src/components/magic-menu.tsx
+msgid "Your idea"
+msgstr "Votre idée"

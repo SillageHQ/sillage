@@ -1,0 +1,53 @@
+name: rag-eval
+
+on:
+  push:
+    paths:
+      - "services/memory/evaluation/**"
+      - "services/memory/api.py"
+      - "services/api/src/index.ts"
+      - ".github/workflows/rag-eval.yml"
+  pull_request:
+    paths:
+      - "services/memory/evaluation/**"
+      - "services/memory/api.py"
+      - "services/api/src/index.ts"
+      - ".github/workflows/rag-eval.yml"
+
+jobs:
+  metrics-unit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Unit tests (metrics + dataset integrity)
+        working-directory: services/memory/evaluation
+        run: |
+          python -m unittest test_metrics.py -v
+          python build_rag_cases.py
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          data = json.loads(Path("rag_cases.json").read_text())
+          assert data["meta"]["queryCount"] == 200, data["meta"]
+          assert data["meta"]["documentCount"] >= 30
+          required = {"id", "query", "category", "requiresRetrieval", "expectedPaths", "forbiddenPaths", "expectedChunkIds"}
+          for case in data["queries"]:
+              missing = required - set(case)
+              assert not missing, (case.get("id"), missing)
+          print("dataset ok", data["meta"])
+          PY
+
+  # Full Sillage vs QMD comparison needs API, Postgres, embeddings, and optional QMD models.
+  # Upload this job's artifacts when wired to a full stack runner.
+  # compare-engines:
+  #   needs: metrics-unit
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - run: uv run python evaluation/compare_engines.py
+  #     - uses: actions/upload-artifact@v4
+  #       with:
+  #         name: rag-comparison
+  #         path: services/memory/evaluation/artifacts/comparison-report.*

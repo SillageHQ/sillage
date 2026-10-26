@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sillage — Choose a direction</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Manrope:wght@400;500;600&amp;family=Newsreader:ital,wght@0,400;1,400&amp;display=swap" rel="stylesheet">
+  <style>
+    :root { color-scheme: dark; font-family: "DM Sans", sans-serif; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; background: #050505; }
+    body { margin: 0; background: #050505; color: #f4f4f2; }
+    button, a { font: inherit; }
+    .selector {
+      position: fixed; z-index: 100; left: 50%; bottom: 20px; transform: translateX(-50%);
+      display: flex; align-items: center; gap: 6px; padding: 6px;
+      background: rgba(12,12,12,.82); border: 1px solid rgba(255,255,255,.14);
+      border-radius: 999px; backdrop-filter: blur(18px); box-shadow: 0 18px 60px rgba(0,0,0,.45);
+    }
+    .selector span { padding: 0 9px; color: #929292; font: 10px "IBM Plex Mono"; letter-spacing: .12em; text-transform: uppercase; }
+    .selector a { display:grid; place-items:center; width:30px; height:30px; color:#aaa; text-decoration:none; border-radius:50%; font-size:12px; }
+    .selector a:hover { background:#fff; color:#080808; }
+    .vibe { position:relative; min-height: 100vh; overflow:hidden; border-bottom:1px solid rgba(255,255,255,.12); }
+    .vibe-label { position:absolute; z-index:20; top:18px; right:20px; font:10px "IBM Plex Mono"; letter-spacing:.16em; color:#777; text-transform:uppercase; }
+    .wordmark { display:flex; align-items:center; gap:11px; font-size:12px; font-weight:600; letter-spacing:.19em; }
+    .cta { display:inline-flex; align-items:center; justify-content:center; min-height:40px; padding:0 20px; border:0; border-radius:5px; background:#f4f4f2; color:#090909; font-size:13px; font-weight:600; text-decoration:none; transition:.25s ease; }
+    .cta:hover { transform:translateY(-2px); box-shadow:0 14px 40px rgba(0,0,0,.25); }
+
+    /* 01 — Archive console */
+    .v1 { background:#090909; display:grid; place-items:center; padding:52px 24px; }
+    .v1::after { content:""; position:absolute; inset:0; opacity:.035; pointer-events:none; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+    .v1-inner { width:min(920px,100%); display:flex; flex-direction:column; align-items:center; gap:56px; z-index:2; }
+    .v1 nav { width:100%; display:flex; justify-content:space-between; color:#e6e6e2; }
+    .v1-mark { width:5px; height:5px; background:#fff; border-radius:50%; box-shadow:9px 0 #555,18px 0 #292929; margin-right:17px; }
+    .domain { font:10px "IBM Plex Mono"; color:#777; border:1px solid #282828; padding:5px 8px; border-radius:4px; }
+    .v1-copy { text-align:center; width:min(560px,100%); }
+    .v1 h1 { font:500 clamp(42px,6vw,66px)/1.03 "DM Sans"; letter-spacing:-.055em; margin:0 0 23px; }
+    .v1 h1 em { color:#777; font-style:normal; }
+    .v1-copy p { width:min(470px,100%); margin:0 auto 32px; color:#858585; line-height:1.65; font-size:14px; }
+    .console { width:min(690px,100%); background:#101010; border:1px solid #292929; border-radius:9px; box-shadow:0 45px 100px rgba(0,0,0,.55); }
+    .console-bar { height:35px; display:flex; align-items:center; justify-content:space-between; padding:0 14px; border-bottom:1px solid #222; color:#666; font:9px "IBM Plex Mono"; letter-spacing:.12em; }
+    .console-body { padding:27px; }
+    .context { color:#444; font:9px "IBM Plex Mono"; margin-bottom:17px; }
+    .memory { padding:22px; border:1px solid #303030; background:#171717; border-radius:6px; }
+    .meta { display:flex; justify-content:space-between; color:#737373; font:8px "IBM Plex Mono"; letter-spacing:.05em; }
+    .memory h3 { margin:16px 0 9px; font-size:16px; font-weight:500; }
+    .memory p { margin:0; color:#8a8a8a; line-height:1.55; font-size:13px; }
+
+    /* 02 — Vanishing point */
+    .v2 { background:#08090a; display:grid; place-items:center; padding:40px 24px; }
+    .v2-grid { position:absolute; inset:0; opacity:.25; background-image:linear-gradient(rgba(255,255,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.07) 1px,transparent 1px); background-size:92px 92px; mask-image:radial-gradient(circle at 50% 50%,black,transparent 67%); }
+    .stars { position:absolute; inset:0; background-image:radial-gradient(circle,#fff 1px,transparent 1.5px); background-size:83px 67px; opacity:.15; }
+    .v2-brand { position:absolute; top:43px; left:50%; transform:translateX(-50%); }
+    .cross { width:22px;height:22px;position:relative; }
+    .cross::before,.cross::after{content:"";position:absolute;background:#eee;left:50%;top:0;width:1px;height:100%;}
+    .cross::before{transform:rotate(45deg)} .cross::after{transform:rotate(-45deg);opacity:.4}
+    .v2-copy { position:relative; text-align:center; width:min(650px,100%); }
+    .eyebrow { color:#74777c; font:10px "IBM Plex Mono"; letter-spacing:.28em; text-transform:uppercase; }
+    .v2 h2 { margin:24px 0; font:400 clamp(42px,6vw,64px)/1.08 "Manrope"; letter-spacing:-.045em; background:linear-gradient(#fff,#8a8a8a); background-clip:text; color:transparent; }
+    .v2 p { width:min(430px,100%); margin:0 auto 34px; color:#777b82; line-height:1.65; font-size:15px; }
+    .v2-foot { position:absolute; bottom:34px; left:50%; transform:translateX(-50%); color:#555; font:9px "IBM Plex Mono"; letter-spacing:.18em; text-transform:uppercase; }
+
+    /* 03 — Deep archive */
+    .v3 { background:#09090d; display:flex; flex-direction:column; justify-content:center; padding:105px 7vw 70px; }
+    .v3::before { content:"";position:absolute;width:55vw;height:55vw;left:55%;top:-28vw;background:radial-gradient(circle,rgba(91,82,246,.2),transparent 68%);filter:blur(20px); }
+    .v3-brand { position:absolute; top:38px; left:7vw; }
+    .arrowmark { width:22px;height:22px;background:linear-gradient(#a7a2ff,#5146e5);clip-path:polygon(50% 0,100% 100%,50% 78%,0 100%); }
+    .v3-layout { position:relative; width:min(1120px,100%); margin:auto; display:grid; grid-template-columns:1fr 1fr; gap:7vw; align-items:center; }
+    .pill { display:inline-flex; color:#8d88ff; border:1px solid rgba(108,99,255,.35); background:rgba(108,99,255,.07); border-radius:999px; padding:6px 10px; font:9px "IBM Plex Mono"; letter-spacing:.15em; }
+    .v3 h2 { margin:21px 0; font:600 clamp(42px,5vw,64px)/1.02 "Manrope"; letter-spacing:-.055em; }
+    .v3 h2 span { display:block;color:transparent;-webkit-text-stroke:1px #74747b; }
+    .v3-copy p { color:#7e7e87; line-height:1.65; font-size:15px; width:min(450px,100%); margin:0 0 30px; }
+    .v3 .cta { background:#655cf3;color:#fff; }
+    .archive { height:430px; padding:14px; border:1px solid rgba(255,255,255,.1); border-radius:13px; background:rgba(15,15,21,.72); backdrop-filter:blur(14px); box-shadow:0 35px 80px rgba(0,0,0,.4); }
+    .search { padding:12px 14px; border:1px solid rgba(255,255,255,.07); border-radius:7px; color:#6d6d75; font:10px "IBM Plex Mono"; }
+    .cards { position:relative; height:315px; margin:28px 17px; }
+    .note { position:absolute; width:72%; padding:18px; border:1px solid rgba(255,255,255,.09); border-radius:8px; background:#13131a; box-shadow:0 15px 35px rgba(0,0,0,.25); font-size:12px; }
+    .note:nth-child(2){top:57px;left:34px;opacity:.72}.note:nth-child(3){top:114px;left:68px;opacity:.42}
+    .note small { display:block; margin-top:12px; color:#6861dc; font:9px "IBM Plex Mono"; }
+
+    /* 04 — Editorial recall */
+    .v4 { background:#0a0a0b; padding:100px 6vw 70px; display:grid; place-items:center; }
+    .v4-brand { position:absolute; top:38px; left:6vw; }
+    .orbit { position:relative; width:19px;height:19px;border:1px solid #596170;border-radius:50%; }
+    .orbit::after { content:""; position:absolute; width:4px;height:4px;background:#a0aab9;border-radius:50%;left:7px;top:7px;box-shadow:0 0 10px #a0aab9; }
+    .v4-layout { width:min(1120px,100%); display:grid;grid-template-columns:1.05fr .95fr;gap:8vw;align-items:center; }
+    .v4 h2 { font:500 clamp(46px,5vw,67px)/1.04 "DM Sans"; letter-spacing:-.055em; margin:0 0 25px; }
+    .v4-copy>p { color:#8e9aaf; line-height:1.65; font-size:16px; margin:0 0 32px; }
+    .v4-actions { display:flex; align-items:center; gap:17px; }.v4-actions small{font:9px "IBM Plex Mono";color:#505762}
+    .editorial-wrap { position:relative; }
+    .editorial-wrap::before,.editorial-wrap::after { content:"";position:absolute;inset:0;border:1px solid rgba(142,154,175,.1);border-radius:12px;transform:translate(18px,-17px) rotate(2deg); }
+    .editorial-wrap::after { transform:translate(-13px,13px) rotate(-1.5deg);opacity:.55; }
+    .editorial { position:relative;z-index:2;padding:31px;background:#1b1b1e;border:1px solid rgba(255,255,255,.09);border-radius:12px;box-shadow:0 40px 80px rgba(0,0,0,.5); }
+    .editorial .meta { color:#737d8e; }
+    blockquote { margin:29px 0; font:italic 23px/1.5 "Newsreader",serif;color:#d2d2d3; }
+    .recall { padding-top:18px;border-top:1px solid #29292c;display:flex;justify-content:space-between;color:#657080;font:9px "IBM Plex Mono"; }
+
+    /* 05 — The trail */
+    .v5 { background:#080a0e;display:grid;place-items:center;padding:40px 22px; }
+    .v5::before { content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 48%,rgba(42,105,230,.13),transparent 45%); }
+    .trail-card { position:absolute;width:65px;height:82px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.025);border-radius:5px;transform:rotate(var(--r));left:var(--x);top:var(--y);opacity:var(--o); }
+    .trail-card:nth-child(1){--x:13%;--y:22%;--r:-13deg;--o:.2}.trail-card:nth-child(2){--x:25%;--y:63%;--r:8deg;--o:.1}.trail-card:nth-child(3){--x:73%;--y:24%;--r:10deg;--o:.16}.trail-card:nth-child(4){--x:83%;--y:66%;--r:-8deg;--o:.1}.trail-card:nth-child(5){--x:65%;--y:77%;--r:15deg;--o:.08}
+    .v5-brand { position:absolute;top:39px;left:50%;transform:translateX(-50%); }
+    .diamond { width:18px;height:18px;border:1px solid #4f8df5;transform:rotate(45deg);box-shadow:-4px -4px 0 -3px #4f8df5; }
+    .v5-copy { position:relative;text-align:center;width:min(660px,100%); }
+    .v5 .eyebrow { color:#4f8df5; }
+    .v5 h2 { font:600 clamp(42px,6vw,65px)/1.05 "Manrope";letter-spacing:-.055em;margin:22px 0; }
+    .v5 h2 em { font:italic 1em "Newsreader";color:#5c93f1; }
+    .v5 p { width:min(470px,100%); margin:0 auto 34px;color:#737985;line-height:1.65;font-size:15px; }
+    .v5-status {position:absolute;bottom:34px;left:50%;transform:translateX(-50%);font:9px "IBM Plex Mono";color:#5c626d}.v5-status b{color:#4dd285;margin-right:7px}
+
+    @media(max-width:780px){
+      .selector span{display:none}.vibe{min-height:850px}.v3-layout,.v4-layout{grid-template-columns:1fr;gap:50px}.archive{height:330px}.cards{height:220px}.v3,.v4{padding-inline:25px}.v1-inner{gap:38px}.vibe-label{top:12px;right:12px}.v4-copy{text-align:center}.v4-actions{justify-content:center}
+    }
+  </style>
+</head>
+<body>
+  <nav class="selector" aria-label="Choose a visual direction"><span>Choose a vibe</span><a href="#v1">1</a><a href="#v2">2</a><a href="#v3">3</a><a href="#v4">4</a><a href="#v5">5</a></nav>
+
+  <section class="vibe v1" id="v1">
+    <div class="vibe-label">Vibe 01 · Archive console</div>
+    <div class="v1-inner">
+      <nav><div class="wordmark"><i class="v1-mark"></i>SILLAGE</div><span class="domain">sillagehq.app</span></nav>
+      <div class="v1-copy"><h1>Your second brain,<br><em>resurfaced.</em></h1><p>A private desktop environment designed to reclaim lost insights. Your notes return when they become useful again.</p><a class="cta" href="#">Download Sillage</a></div>
+      <div class="console"><div class="console-bar"><span>•••</span><span>CONTEXTUAL RECALL</span></div><div class="console-body"><div class="context">CURRENT WORKFLOW / NEURAL ARCHITECTURES</div><div class="memory"><div class="meta"><span>RESURFACED FROM 14 MONTHS AGO</span><span>96% MATCH</span></div><h3>The latent space of memory</h3><p>The most vital ideas aren't deleted. They are simply buried beneath the noise of the present.</p></div></div></div>
+    </div>
+  </section>
+
+  <section class="vibe v2" id="v2">
+    <div class="vibe-label">Vibe 02 · Vanishing point</div><div class="v2-grid"></div><div class="stars"></div>
+    <div class="wordmark v2-brand"><i class="cross"></i>SILLAGE</div>
+    <div class="v2-copy"><span class="eyebrow">The memory persistent</span><h2>Thoughts shouldn’t<br>fade into the dark.</h2><p>Capture ambient insights and let them resurface exactly when your context demands them.</p><a class="cta" href="#">Claim your space</a></div>
+    <div class="v2-foot">sillagehq.app</div>
+  </section>
+
+  <section class="vibe v3" id="v3">
+    <div class="vibe-label">Vibe 03 · Deep archive</div><div class="wordmark v3-brand"><i class="arrowmark"></i>SILLAGE</div>
+    <div class="v3-layout"><div class="v3-copy"><span class="pill">REFINED RECALL</span><h2>Your second brain,<span>resurfaced.</span></h2><p>Sillage bridges archived notes and active thought. Static markdown becomes useful context without leaving your private archive.</p><a class="cta" href="#">Open your archive</a></div><div class="archive"><div class="search">⌕ &nbsp; Ask your archive…</div><div class="cards"><div class="note">Philosophy of Flow<small>#mental-models&nbsp; #work</small></div><div class="note">Obsidian Graph Analysis<small>#pkm&nbsp; #graph</small></div><div class="note">Stochastic Memory<small>#theory&nbsp; #cognition</small></div></div></div></div>
+  </section>
+
+  <section class="vibe v4" id="v4">
+    <div class="vibe-label">Vibe 04 · Editorial recall</div><div class="wordmark v4-brand"><i class="orbit"></i>SILLAGE</div>
+    <div class="v4-layout"><div class="v4-copy"><h2>Recall is a<br>creative act.</h2><p>The desktop second brain for deep personal archives. Resurfacing the signals you once found, precisely when they matter.</p><div class="v4-actions"><a class="cta" href="#">Enter the archive</a><small>sillagehq.app</small></div></div><div class="editorial-wrap"><article class="editorial"><div class="meta"><span>THE ARCHITECTURE OF MEMORY</span><span>MAR 14, 2022</span></div><blockquote>“A sillage is the trail left by a perfume. In thought, it is the lingering resonance of a half-forgotten insight.”</blockquote><div class="recall"><span>#EPISTEMOLOGY</span><span>● RESURFACED VIA “RESONANCE”</span></div></article></div></div>
+  </section>
+
+  <section class="vibe v5" id="v5">
+    <div class="vibe-label">Vibe 05 · The trail</div><div class="trail-card"></div><div class="trail-card"></div><div class="trail-card"></div><div class="trail-card"></div><div class="trail-card"></div><div class="wordmark v5-brand"><i class="diamond"></i>SILLAGE</div>
+    <div class="v5-copy"><span class="eyebrow">Memory without effort</span><h2>Follow the <em>trail</em> of your own best thinking.</h2><p>Sillage lives on your desktop, quietly resurfacing relevant moments from past notes while you work today.</p><a class="cta" href="#">Download for desktop</a></div><div class="v5-status"><b>●</b>sillagehq.app · listening for context</div>
+  </section>
+</body>
+</html>

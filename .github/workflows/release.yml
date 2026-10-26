@@ -1,0 +1,287 @@
+name: Publish Sillage binaries
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Release version (for example v1.0.0-beta)
+        required: true
+        default: v1.0.0-beta
+        type: string
+
+env:
+  CARGO_TERM_COLOR: always
+  RUST_BACKTRACE: 1
+
+jobs:
+  create-tag:
+    name: Create release tag
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Validate and create tag
+        env:
+          RELEASE_VERSION: ${{ inputs.version }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VERSION="${RELEASE_VERSION#v}"
+          if [[ ! "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+([-.+][0-9A-Za-z.-]+)?$ ]]; then
+            echo "Release version must look like 1.0.0-beta, got: $VERSION"
+            exit 1
+          fi
+
+          CONFIG_VERSION=$(node -p "require('./apps/desktop/src-tauri/tauri.conf.json').version")
+          if [[ "$VERSION" != "$CONFIG_VERSION" ]]; then
+            echo "Requested version $VERSION does not match the app version $CONFIG_VERSION"
+            exit 1
+          fi
+
+          TAG="v$VERSION"
+          if git ls-remote --exit-code --tags origin "refs/tags/$TAG" >/dev/null 2>&1; then
+            echo "Tag $TAG already exists"
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git tag -a "$TAG" -m "Release $TAG"
+          git push origin "$TAG"
+
+  prepare-release:
+    name: Prepare release metadata
+    needs: create-tag
+    if: always() && (github.event_name == 'push' || needs.create-tag.result == 'success')
+    runs-on: ubuntu-22.04
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Resolve and verify release version
+        id: version
+        env:
+          RELEASE_VERSION: ${{ github.ref_type == 'tag' && github.ref_name || inputs.version }}
+        run: |
+          VERSION="${RELEASE_VERSION#v}"
+          if [[ ! "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+([-.+][0-9A-Za-z.-]+)?$ ]]; then
+            echo "Release version must look like 1.0.0-beta, got: $VERSION"
+            exit 1
+          fi
+
+          CONFIG_VERSION=$(node -p "require('./apps/desktop/src-tauri/tauri.conf.json').version")
+          if [[ "$VERSION" != "$CONFIG_VERSION" ]]; then
+            echo "Requested version $VERSION does not match the app version $CONFIG_VERSION"
+            exit 1
+          fi
+
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+  build-and-publish:
+    name: Build Sillage (${{ matrix.name }})
+    needs: prepare-release
+    if: always() && needs.prepare-release.result == 'success'
+    permissions:
+      contents: read
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: macOS universal
+            platform: macos-latest
+            releasePlatform: darwin
+            releaseArch: universal
+            updaterArches: aarch64,x86_64
+            args: --target universal-apple-darwin --bundles app,dmg
+          - name: Linux x64
+            platform: ubuntu-22.04
+            releasePlatform: linux
+            releaseArch: x86_64
+            updaterArches: x86_64
+            args: --bundles deb,appimage
+          - name: Windows x64
+            platform: windows-latest
+            releasePlatform: windows
+            releaseArch: x86_64
+            updaterArches: x86_64
+            args: --target x86_64-pc-windows-msvc --bundles nsis
+
+    runs-on: ${{ matrix.platform }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Linux dependencies
+        if: startsWith(matrix.platform, 'ubuntu')
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libwebkit2gtk-4.1-dev libappindicator3-dev librsvg2-dev patchelf xdg-utils libfuse2
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 11.10.0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Install Rust stable
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.platform == 'macos-latest' && 'aarch64-apple-darwin,x86_64-apple-darwin' || '' }}
+
+      - name: Cache Rust build
+        uses: swatinem/rust-cache@v2
+        with:
+          workspaces: ./apps/desktop/src-tauri -> target
+          shared-key: release-${{ matrix.platform }}
+
+      - name: Install frontend dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build signed binaries
+        id: build
+        continue-on-error: ${{ startsWith(matrix.platform, 'macos') }}
+        uses: tauri-apps/tauri-action@v1
+        env:
+          VITE_API_URL: ${{ vars.VITE_API_URL }}
+          APPLE_CERTIFICATE: ${{ secrets.APPLE_CERTIFICATE }}
+          APPLE_CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
+          APPLE_SIGNING_IDENTITY: ${{ secrets.APPLE_SIGNING_IDENTITY }}
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_PASSWORD: ${{ secrets.APPLE_PASSWORD }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
+        with:
+          projectPath: apps/desktop
+          tauriScript: pnpm tauri
+          args: ${{ matrix.args }}
+
+      - name: Retry macOS signing and notarization
+        if: startsWith(matrix.platform, 'macos') && steps.build.outcome == 'failure'
+        uses: tauri-apps/tauri-action@v1
+        env:
+          VITE_API_URL: ${{ vars.VITE_API_URL }}
+          APPLE_CERTIFICATE: ${{ secrets.APPLE_CERTIFICATE }}
+          APPLE_CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
+          APPLE_SIGNING_IDENTITY: ${{ secrets.APPLE_SIGNING_IDENTITY }}
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_PASSWORD: ${{ secrets.APPLE_PASSWORD }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
+        with:
+          projectPath: apps/desktop
+          tauriScript: pnpm tauri
+          args: ${{ matrix.args }}
+
+      - name: Notarize and staple macOS disk image
+        if: startsWith(matrix.platform, 'macos')
+        env:
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_PASSWORD: ${{ secrets.APPLE_PASSWORD }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+        run: |
+          DMG=$(find apps/desktop/src-tauri/target/universal-apple-darwin/release/bundle/dmg \
+            -type f -name '*.dmg' -print -quit)
+          if [ -z "$DMG" ]; then
+            echo "No macOS disk image found"
+            exit 1
+          fi
+
+          for attempt in 1 2 3; do
+            if xcrun notarytool submit "$DMG" \
+              --apple-id "$APPLE_ID" \
+              --password "$APPLE_PASSWORD" \
+              --team-id "$APPLE_TEAM_ID" \
+              --wait; then
+              break
+            fi
+            if [ "$attempt" -eq 3 ]; then
+              exit 1
+            fi
+            sleep 15
+          done
+
+          xcrun stapler staple "$DMG"
+          xcrun stapler validate "$DMG"
+          spctl --assess --verbose=2 --type install "$DMG"
+
+      - name: Connect to Tailscale
+        uses: tailscale/github-action@v3
+        with:
+          oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
+          oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
+          tags: tag:github-actions
+
+      - name: Route release registry through Tailscale
+        shell: bash
+        env:
+          REGISTRY_IP: ${{ vars.RELEASE_REGISTRY_TAILSCALE_IP }}
+          RELEASE_REGISTRY_URL: ${{ vars.RELEASE_REGISTRY_URL }}
+        run: |
+          if [[ -z "$REGISTRY_IP" ]]; then
+            echo "RELEASE_REGISTRY_TAILSCALE_IP is not configured"
+            exit 1
+          fi
+
+          REGISTRY_HOST=$(node -e 'console.log(new URL(process.env.RELEASE_REGISTRY_URL).hostname)')
+          if [[ "$RUNNER_OS" == "Windows" ]]; then
+            powershell -NoProfile -Command \
+              "\$hostsPath = Join-Path \$env:SystemRoot 'System32\\drivers\\etc\\hosts'; Add-Content -Path \$hostsPath -Value '${REGISTRY_IP} ${REGISTRY_HOST}'"
+          else
+            echo "$REGISTRY_IP $REGISTRY_HOST" | sudo tee -a /etc/hosts > /dev/null
+          fi
+
+          echo "RELEASE_REGISTRY_URL=$RELEASE_REGISTRY_URL" >> "$GITHUB_ENV"
+          curl -fsS --retry 5 --retry-all-errors --retry-delay 2 \
+            --connect-timeout 10 --max-time 30 "$RELEASE_REGISTRY_URL/health"
+
+      - name: Upload binaries to R2 and register release
+        env:
+          R2_ACCESS_KEY_ID: ${{ vars.R2_ACCESS_KEY_ID }}
+          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          R2_ENDPOINT: ${{ vars.R2_ENDPOINT }}
+          R2_BUCKET: ${{ vars.R2_BUCKET }}
+          R2_PUBLIC_BASE_URL: ${{ vars.R2_PUBLIC_BASE_URL }}
+          RELEASE_REGISTRY_TOKEN: ${{ secrets.RELEASE_REGISTRY_TOKEN }}
+          RELEASE_VERSION: ${{ needs.prepare-release.outputs.version }}
+          RELEASE_PLATFORM: ${{ matrix.releasePlatform }}
+          RELEASE_ARCH: ${{ matrix.releaseArch }}
+          RELEASE_UPDATER_ARCHES: ${{ matrix.updaterArches }}
+        run: node services/api/scripts/publish-r2-release.mjs
+
+  create-github-release:
+    name: Create GitHub release
+    needs: [prepare-release, build-and-publish]
+    if: needs.build-and-publish.result == 'success'
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write
+    steps:
+      - name: Create release if missing
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_VERSION: ${{ needs.prepare-release.outputs.version }}
+        run: |
+          TAG="v$RELEASE_VERSION"
+          if gh release view "$TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo "GitHub release $TAG already exists"
+            exit 0
+          fi
+
+          gh release create "$TAG" \
+            --repo "$GITHUB_REPOSITORY" \
+            --verify-tag \
+            --title "Sillage $TAG" \
+            --generate-notes

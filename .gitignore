@@ -1,0 +1,34 @@
+# deps / build
+node_modules/
+.pnpm-store/
+dist/
+dist-ssr/
+**/target/
+
+# python
+.venv/
+__pycache__/
+*.py[cod]
+
+# secrets / env — never commit
+.env
+.env.*
+*.key
+secrets.*
+compose.override.yml
+compose.override.yaml
+.claude/
+
+# os
+.DS_Store
+*.local
+
+# RAG evaluation artifacts (never commit private corpus results)
+services/memory/evaluation/artifacts/*
+!services/memory/evaluation/artifacts/.gitkeep
+services/memory/evaluation/corpus/_qmd_work/
+# Private vault smoke gold (real questions / paths — never commit)
+services/memory/evaluation/private/*
+!services/memory/evaluation/private/.gitkeep
+!services/memory/evaluation/private/README.md
+!services/memory/evaluation/private/vault_smoke.example.json

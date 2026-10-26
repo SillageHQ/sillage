@@ -1,0 +1,5 @@
+<svg width="264" height="64" viewBox="0 0 264 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M8 11C8 8 10 6 13 5L29 0V21C29 27 26 30 20 33C15 36 15 39 20 42C26 45 29 49 29 56H13C10 56 8 54 8 51V11Z" fill="#11110F"/>
+  <path d="M37 12C37 9 39 7 42 7H54V51C54 54 52 56 49 56H37V44C37 39 34 36 29 33C25 31 25 29 30 26C35 23 37 19 37 12Z" fill="#2855D9"/>
+  <text x="76" y="39" fill="#11110F" font-family="Manrope, sans-serif" font-size="23" font-weight="600" letter-spacing="5">SILLAGE</text>
+</svg>

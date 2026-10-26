@@ -1,0 +1,28 @@
+FROM ghcr.io/pnpm/pnpm:11
+
+RUN pnpm runtime set node 22.12 -g
+
+WORKDIR /app
+
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+COPY services/api/package.json ./services/api/package.json
+
+RUN pnpm install --filter @sb/api --frozen-lockfile
+
+COPY services/api ./services/api
+
+RUN pnpm --filter @sb/api generate
+
+WORKDIR /app/services/api
+
+RUN useradd --create-home --uid 10001 appuser \
+    && chown -R appuser:appuser /app
+
+ENV NODE_ENV=production
+ENV PORT=3001
+
+USER appuser
+
+EXPOSE 3001
+
+CMD ["sh", "-c", "pnpm db:migrate:deploy && pnpm start"]

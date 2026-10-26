@@ -1,0 +1,57 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Sillage",
+  "version": "1.0.0-beta.10",
+  "identifier": "cloud.jb-holdings.sillage",
+  "build": {
+    "beforeDevCommand": "pnpm dev",
+    "devUrl": "http://localhost:1420",
+    "beforeBuildCommand": "pnpm build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "Sillage",
+        "width": 1100,
+        "height": 720,
+        "titleBarStyle": "Overlay",
+        "hiddenTitle": true,
+        "dragDropEnabled": false
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "createUpdaterArtifacts": true,
+    "publisher": "JB Holdings SIA",
+    "category": "Productivity",
+    "shortDescription": "The contextual memory layer for Obsidian",
+    "longDescription": "Sillage resurfaces the right context from your Obsidian vault when you need it.",
+    "copyright": "Copyright © 2026 JB Holdings SIA. All rights reserved.",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "macOS": {
+      "minimumSystemVersion": "10.15",
+      "signingIdentity": "Developer ID Application: JB Holdings SIA (SQ47CHL585)",
+      "providerShortName": "SQ47CHL585"
+    }
+  },
+  "plugins": {
+    "updater": {
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDU4QTYwOUUzQUJEOTk3NwpSV1IzbWIwNm5tQ0tCVkdzWjJSN2dPMzRucHJDQUtFcHNsV1ZXKzNHQzEzaHdKOG1ybzZlSFpWWQo=",
+      "endpoints": [
+        "https://releases.sillagehq.app/updates/beta/{{target}}/{{arch}}/latest.json"
+      ]
+    }
+  }
+}

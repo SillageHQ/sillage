@@ -1,0 +1,31 @@
+use_default_settings: true
+
+server:
+  # Docker publishes this container only on the host loopback interface.
+  bind_address: 0.0.0.0
+  port: 8080
+  public_instance: false
+  limiter: false
+  image_proxy: false
+  method: "GET"
+  secret_key: "change-this-in-production"
+
+search:
+  formats:
+    - html
+    - json
+  safe_search: 1
+  autocomplete: ""
+
+# Keep several independent general-purpose engines available. Some providers
+# temporarily suspend themselves after CAPTCHA/rate-limit responses.
+engines:
+  - name: bing
+    disabled: false
+  - name: mojeek
+    disabled: false
+  - name: qwant
+    disabled: false
+
+ui:
+  static_use_hash: true

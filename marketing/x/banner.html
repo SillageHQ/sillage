@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1500" />
+  <title>Sillage — X Banner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      width: 1500px;
+      height: 500px;
+      overflow: hidden;
+      background: #ecebe5;
+    }
+    .banner {
+      position: relative;
+      width: 1500px;
+      height: 500px;
+      background: #ecebe5;
+      color: #11110f;
+      overflow: hidden;
+    }
+    /* subtle paper grain */
+    .banner::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0.035;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+    .rules {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    .rules .h {
+      position: absolute;
+      left: 0; right: 0;
+      height: 1px;
+      background: rgba(17, 17, 15, 0.12);
+    }
+    .rules .v {
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 1px;
+      background: rgba(17, 17, 15, 0.12);
+    }
+    .wake {
+      position: absolute;
+      left: -40px;
+      right: -40px;
+      top: 40px;
+      bottom: 20px;
+      width: calc(100% + 80px);
+      height: calc(100% - 60px);
+      fill: none;
+      stroke: #2855d9;
+      stroke-width: 1.5;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .wake-ghost { opacity: 0.22; stroke-width: 1.2; }
+    .meta-top {
+      position: absolute;
+      top: 36px;
+      left: 72px;
+      right: 72px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 3;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #54544f;
+    }
+    .wordmark {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      color: #11110f;
+    }
+    .wordmark b {
+      font-family: Manrope, sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+    .mark { width: 36px; height: 36px; }
+    .content {
+      position: absolute;
+      z-index: 3;
+      left: 280px;
+      right: 80px;
+      top: 50%;
+      transform: translateY(-42%);
+      display: grid;
+      grid-template-columns: 1fr minmax(280px, 340px);
+      gap: 48px;
+      align-items: end;
+    }
+    .title {
+      font-family: Newsreader, Georgia, serif;
+      font-weight: 400;
+      font-size: 78px;
+      line-height: 0.92;
+      letter-spacing: -0.04em;
+      color: #11110f;
+    }
+    .title em {
+      font-style: italic;
+      color: #2855d9;
+      font-weight: 400;
+    }
+    .aside {
+      border-left: 1px solid rgba(17, 17, 15, 0.22);
+      padding-left: 28px;
+      padding-bottom: 8px;
+    }
+    .aside p {
+      font-family: Manrope, sans-serif;
+      font-size: 18px;
+      line-height: 1.45;
+      font-weight: 500;
+      color: #11110f;
+      max-width: 300px;
+    }
+    .aside span {
+      display: block;
+      margin-top: 18px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #54544f;
+    }
+    .footer {
+      position: absolute;
+      z-index: 3;
+      left: 280px;
+      right: 72px;
+      bottom: 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #54544f;
+    }
+  </style>
+</head>
+<body>
+  <div class="banner" id="banner">
+    <div class="rules" aria-hidden="true">
+      <div class="h" style="top: 88px"></div>
+      <div class="h" style="bottom: 88px"></div>
+      <div class="v" style="left: 248px"></div>
+    </div>
+
+    <svg class="wake" viewBox="0 0 1600 500" preserveAspectRatio="none" aria-hidden="true">
+      <path class="wake-ghost" d="M-40 380C220 365 340 90 620 175c280 85 390-95 720-125 160-15 280-5 360 25" />
+      <path d="M-50 360C210 350 330 75 615 160c290 88 400-90 730-120 165-15 285-2 365 30" />
+    </svg>
+
+    <div class="meta-top">
+      <div class="wordmark">
+        <svg class="mark" viewBox="0 0 44 44" aria-hidden="true">
+          <path fill="#11110F" d="M5 10c0-2 1-3 3-4L21 1v14c0 4-2 6-6 8-4 2-5 4-1 7 5 3 7 5 7 10v3H8c-2 0-3-1-3-3V10Z"/>
+          <path fill="#2855D9" d="M26 12c0-2 1-3 3-3h10v31c0 2-1 3-3 3H26v-8c0-4-2-6-6-8-3-2-3-3 1-5 3-2 5-4 5-7v-3Z"/>
+        </svg>
+        <b>Sillage</b>
+      </div>
+      <span>Private beta · 2026</span>
+    </div>
+
+    <div class="content">
+      <h1 class="title">
+        Your second brain,<br />
+        <em>resurfaced.</em>
+      </h1>
+      <div class="aside">
+        <p>The contextual memory layer for Obsidian.</p>
+        <span>Notes · Recall · Resurface</span>
+      </div>
+    </div>
+
+    <div class="footer">
+      <span>Memory that leaves a trail</span>
+      <span>sillagehq.app</span>
+    </div>
+
+  </div>
+</body>
+</html>
