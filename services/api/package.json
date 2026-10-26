@@ -27,7 +27,7 @@
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "react-email": "^6.9.1",
-    "undici": "^8.8.0"
+    "undici": "^8.12.2"
   },
   "devDependencies": {
     "@types/node": "^22.10.2",
